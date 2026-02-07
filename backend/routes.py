@@ -50,8 +50,10 @@ def login():
           on success set session["user_id"], session["username"] and redirect to home.
     """
     if request.method == "GET":
-        # Simple HTML form; Person 4 can replace with a template later.
-        return """
+        msg = ""
+        if request.args.get("created"):
+            msg = "<p><strong>Account created. Please log in.</strong></p>"
+        return msg + """
         <h1>Log in</h1>
         <p>Already have an account? Enter your credentials below.</p>
         <form method="post" action="/login">
@@ -102,7 +104,7 @@ def signup():
         return "Username already taken.", 400
     password_hash = generate_password_hash(password)
     db.create_user(username, email, password_hash)
-    return redirect(url_for("login"))
+    return redirect(url_for("login", created=1))
 
 
 def logout():
