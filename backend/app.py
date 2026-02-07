@@ -31,4 +31,5 @@ app_routes(app)
 # ---------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    # host="0.0.0.0" so the server is reachable from your browser (e.g. on EC2).
+    app.run(debug=True, host="0.0.0.0")
