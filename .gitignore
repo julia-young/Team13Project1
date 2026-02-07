@@ -9,6 +9,6 @@ __pycache__/
 # Env vars / secrets (don't push)
 .env
 
-# Docs you don't want in the repo
+
 AWS_MCP_SETUP.md
 PROJECT_PLAN.md
