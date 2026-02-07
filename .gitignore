@@ -1,0 +1,14 @@
+# Virtual env (don't push)
+venv/
+
+# Python cache (don't push)
+__pycache__/
+*.pyc
+*.pyo
+
+# Env vars / secrets (don't push)
+.env
+
+# Docs you don't want in the repo
+AWS_MCP_SETUP.md
+PROJECT_PLAN.md
