@@ -15,10 +15,10 @@ from werkzeug.security import check_password_hash, generate_password_hash
 # ---------------------------------------------------------------------------
 
 def home():
-    """Serve the home page. Shows greeting and Log in / Log out link."""
+    """Serve the home page. Logged in: greeting and Log out. Not logged in: Welcome with Sign up or Log in."""
     if session.get("user_id"):
         return f"Hello, {session.get('username', '')}! <a href='/logout'>Log out</a>"
-    return "Hello, World! <a href='/login'>Log in</a>"
+    return "Welcome. First time? <a href='/signup'>Sign up</a>. Already have an account? <a href='/login'>Log in</a>."
 
 
 def db_check():
@@ -53,12 +53,13 @@ def login():
         # Simple HTML form; Person 4 can replace with a template later.
         return """
         <h1>Log in</h1>
+        <p>Already have an account? Enter your credentials below.</p>
         <form method="post" action="/login">
             <label>Username: <input name="username" type="text" required></label><br>
             <label>Password: <input name="password" type="password" required></label><br>
             <button type="submit">Log in</button>
         </form>
-        <p><a href="/signup">Sign up</a></p>
+        <p>Don't have an account? <a href="/signup">Sign up</a></p>
         """
     # POST: process form
     username = request.form.get("username", "").strip()
@@ -83,13 +84,14 @@ def signup():
     if request.method == "GET":
         return """
         <h1>Sign up</h1>
+        <p>First time? Create an account below.</p>
         <form method="post" action="/signup">
             <label>Username: <input name="username" type="text" required></label><br>
             <label>Password: <input name="password" type="password" required></label><br>
             <label>Email: <input name="email" type="email"></label><br>
             <button type="submit">Sign up</button>
         </form>
-        <p><a href="/login">Log in</a></p>
+        <p>Already have an account? <a href="/login">Log in</a></p>
         """
     username = request.form.get("username", "").strip()
     password = request.form.get("password", "")
