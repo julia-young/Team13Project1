@@ -7,7 +7,7 @@ Each route uses db.py for database access; photo routes will also use S3.
 #------------------------------- imports -------------------------------------#
 import db
 from flask import redirect, request, session, url_for
-from werkzeug.security import check_password_hash
+from werkzeug.security import check_password_hash, generate_password_hash
 
 
 # ---------------------------------------------------------------------------
@@ -58,6 +58,7 @@ def login():
             <label>Password: <input name="password" type="password" required></label><br>
             <button type="submit">Log in</button>
         </form>
+        <p><a href="/signup">Sign up</a></p>
         """
     # POST: process form
     username = request.form.get("username", "").strip()
@@ -72,6 +73,34 @@ def login():
     session["user_id"] = user["id"]
     session["username"] = user["username"]
     return redirect(url_for("home"))
+
+
+def signup():
+    """
+    GET: Show sign-up form (username, password, email).
+    POST: Hash password, db.create_user(...), redirect to login.
+    """
+    if request.method == "GET":
+        return """
+        <h1>Sign up</h1>
+        <form method="post" action="/signup">
+            <label>Username: <input name="username" type="text" required></label><br>
+            <label>Password: <input name="password" type="password" required></label><br>
+            <label>Email: <input name="email" type="email"></label><br>
+            <button type="submit">Sign up</button>
+        </form>
+        <p><a href="/login">Log in</a></p>
+        """
+    username = request.form.get("username", "").strip()
+    password = request.form.get("password", "")
+    email = request.form.get("email", "").strip() or None
+    if not username or not password:
+        return "Username and password required.", 400
+    if db.get_user_by_username(username):
+        return "Username already taken.", 400
+    password_hash = generate_password_hash(password)
+    db.create_user(username, email, password_hash)
+    return redirect(url_for("login"))
 
 
 def logout():
@@ -103,5 +132,6 @@ def app_routes(app):
     app.add_url_rule("/", "home", home)
     app.add_url_rule("/db-check", "db_check", db_check)
     app.add_url_rule("/login", "login", login, methods=["GET", "POST"])
+    app.add_url_rule("/signup", "signup", signup, methods=["GET", "POST"])
     app.add_url_rule("/logout", "logout", logout)
     # Upload, gallery, search, download will be added here.
