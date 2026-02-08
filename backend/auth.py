@@ -4,7 +4,6 @@ Auth helpers: login required check and password verification.
 Used by routes to protect photo routes (upload, gallery, search, download)
 and to verify login credentials against the database.
 """
-
 #------------------------------- imports -------------------------------------#
 from functools import wraps
 
@@ -26,5 +25,3 @@ def login_required(f):
     return wrapped
 
 
-# Password hashing will use Werkzeug (check_password_hash, generate_password_hash).
-# We'll add a small helper here when we implement login POST.

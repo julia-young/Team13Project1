@@ -5,9 +5,15 @@ All HTTP routes (login, upload, gallery, search, download) live here.
 Each route uses db.py for database access; photo routes will also use S3.
 """
 #------------------------------- imports -------------------------------------#
+import os
+import time
+
+import boto3
 import db
-from flask import redirect, request, session, url_for
+from flask import redirect, request, Response, session, url_for
 from werkzeug.security import check_password_hash, generate_password_hash
+from auth import login_required
+
 
 
 # ---------------------------------------------------------------------------
@@ -17,7 +23,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 def home():
     """Serve the home page. Logged in: greeting and Log out. Not logged in: Welcome with Sign up or Log in."""
     if session.get("user_id"):
-        return f"Hello, {session.get('username', '')}! <a href='/logout'>Log out</a>"
+        return f"Hello, {session.get('username', '')}! <a href='/upload'>Upload</a> | <a href='/gallery'>Gallery</a> | <a href='/search'>Search</a> | <a href='/logout'>Log out</a>"
     return "Welcome. First time? <a href='/signup'>Sign up</a>. Already have an account? <a href='/login'>Log in</a>."
 
 
@@ -42,6 +48,7 @@ def db_check():
 # ---------------------------------------------------------------------------
 # Auth routes (login, logout)
 # ---------------------------------------------------------------------------
+
 
 def login():
     """
@@ -76,6 +83,8 @@ def login():
     session["user_id"] = user["id"]
     session["username"] = user["username"]
     return redirect(url_for("home"))
+
+
 
 
 def signup():
@@ -114,18 +123,128 @@ def logout():
 
 
 # ---------------------------------------------------------------------------
-# Photo routes (login required) — to be added later
+# Photo routes (login required)
 # ---------------------------------------------------------------------------
-# def upload(): ...
-# def gallery(): ...
-# def search(): ...
-# def download(): ...
+
+@login_required
+def upload():
+    """
+    GET: Show upload form (file, optional title).
+    POST: Upload file to S3, save row with db.add_photo, redirect to home.
+    """
+    if request.method == "GET":
+        return """
+        <h1>Upload a photo</h1>
+        <form method="post" action="/upload" enctype="multipart/form-data">
+            <label>Photo: <input type="file" name="photo" accept="image/*" required></label><br>
+            <label>Title (optional): <input type="text" name="title"></label><br>
+            <button type="submit">Upload</button>
+        </form>
+        <p><a href="/">Home</a></p>
+        """
+    photo = request.files.get("photo")
+    if not photo or photo.filename == "":
+        return "No file selected.", 400
+
+    user_id = session["user_id"]
+    title = request.form.get("title", "").strip() or None
+    original_name = photo.filename
+    safe_name = os.path.basename(original_name).replace(" ", "_")
+    bucket = os.environ.get("S3_BUCKET", "assignment-1-images")
+    key = f"{user_id}/{int(time.time())}_{safe_name}"
+    content_type = photo.content_type or "application/octet-stream"
+    body = photo.read()
+    size_bytes = len(body)
+
+    try:
+        s3 = boto3.client("s3", region_name=os.environ.get("AWS_REGION", "us-east-2"))
+        s3.put_object(Bucket=bucket, Key=key, Body=body, ContentType=content_type)
+        db.add_photo(
+            user_id, bucket, key, original_name,
+            title=title, description=None, tags=None,
+            content_type=content_type, size_bytes=size_bytes,
+        )
+    except Exception as e:
+        return f"Upload failed: {e}", 500
+
+    return redirect(url_for("home"))
+
+
+@login_required
+def gallery():
+    """List the current user's photos with download links."""
+    user_id = session["user_id"]
+    photos = db.list_photos(user_id)
+    if not photos:
+        return """
+        <h1>Gallery</h1>
+        <p>No photos yet. <a href="/upload">Upload</a> one.</p>
+        <p><a href="/">Home</a></p>
+        """
+    lines = ["<h1>Gallery</h1>", "<ul>"]
+    for p in photos:
+        title = p.get("title") or p.get("original_name", "Photo")
+        lines.append(f'<li>{title} — <a href="/download/{p["id"]}">Download</a></li>')
+    lines.append("</ul>")
+    lines.append('<p><a href="/upload">Upload</a> | <a href="/search">Search</a> | <a href="/">Home</a></p>')
+    return "\n".join(lines)
+
+
+@login_required
+def search():
+    """Search photos by title, description, or tags; show results with download links."""
+    user_id = session["user_id"]
+    q = request.args.get("q", "").strip() or request.form.get("q", "").strip()
+    if not q:
+        return """
+        <h1>Search</h1>
+        <form method="get" action="/search">
+            <label>Search: <input type="text" name="q" placeholder="title, description, or tags"></label>
+            <button type="submit">Search</button>
+        </form>
+        <p><a href="/gallery">Gallery</a> | <a href="/">Home</a></p>
+        """
+    photos = db.search_photos(user_id, q=q)
+    if not photos:
+        return f"""
+        <h1>Search</h1>
+        <p>No results for &quot;{q}&quot;.</p>
+        <p><a href="/search">Search again</a> | <a href="/gallery">Gallery</a> | <a href="/">Home</a></p>
+        """
+    lines = [f"<h1>Search results for &quot;{q}&quot;</h1>", "<ul>"]
+    for p in photos:
+        title = p.get("title") or p.get("original_name", "Photo")
+        lines.append(f'<li>{title} — <a href="/download/{p["id"]}">Download</a></li>')
+    lines.append("</ul>")
+    lines.append('<p><a href="/search">Search again</a> | <a href="/gallery">Gallery</a> | <a href="/">Home</a></p>')
+    return "\n".join(lines)
+
+
+@login_required
+def download(photo_id):
+    """Stream the photo from S3 so the user can download it."""
+    user_id = session["user_id"]
+    photo = db.get_photo(photo_id, user_id)
+    if not photo:
+        return "Photo not found.", 404
+    bucket = photo["s3_bucket"]
+    key = photo["s3_key"]
+    content_type = photo.get("content_type") or "application/octet-stream"
+    filename = photo.get("original_name") or "photo"
+    try:
+        s3 = boto3.client("s3", region_name=os.environ.get("AWS_REGION", "us-east-2"))
+        obj = s3.get_object(Bucket=bucket, Key=key)
+        body = obj["Body"].read()
+    except Exception as e:
+        return f"Download failed: {e}", 500
+    resp = Response(body, content_type=content_type)
+    resp.headers["Content-Disposition"] = f'attachment; filename="{filename}"'
+    return resp
 
 
 # ---------------------------------------------------------------------------
 # App routes: attach URL paths to handlers (called from app.py)
 # ---------------------------------------------------------------------------
-
 def app_routes(app):
     """
     Attach route handlers from this file to the Flask app.
@@ -138,4 +257,8 @@ def app_routes(app):
     app.add_url_rule("/login", "login", login, methods=["GET", "POST"])
     app.add_url_rule("/signup", "signup", signup, methods=["GET", "POST"])
     app.add_url_rule("/logout", "logout", logout)
-    # Upload, gallery, search, download will be added here.
+    app.add_url_rule("/upload", "upload", upload, methods=["GET", "POST"])
+    app.add_url_rule("/gallery", "gallery", gallery)
+    app.add_url_rule("/search", "search", search, methods=["GET", "POST"])
+    app.add_url_rule("/download/<int:photo_id>", "download", download)
+    
