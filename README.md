@@ -1,9 +1,5 @@
 # Team 13 Project 1 — Cloud Photo Gallery
 
-This README is for **our team**. Use it to get set up and run the app after you pull the latest code. Person 1 & 2 set up the repo, added the schema and `db.py`. The rest (Flask app, routes, auth, init_db, S3) was added on top of that — so when you pull, you need to know how to install deps, run the app, and **why we only run and test it on EC2**.
-
----
-
 ## What you need to know after pulling
 
 - **Repo layout:** Same as before: we have `backend/` (and `frontend/` if present). New stuff in `backend/`:
