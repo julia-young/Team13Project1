@@ -28,7 +28,7 @@
         <br>
         <a href="/">Home</a> | 
         <a href="/add">Add Photo</a> | 
-        <a href="/logout">Logout</a> <br><br>
+        <a href="/logout" style="color: red;">Logout</a> <br><br>
 
         <div class="container">
           <div class="row">
@@ -45,28 +45,34 @@
 
       <div class="content-sm container">
         <div class="theme-portfolio">
-<div id="portfolio-4-col-grid" class="cbp">
-  {% for p in photos %}
-  <div class="cbp-item idea web-design theme-portfolio-item-v2 theme-portfolio-item-xs">
-    <div class="cbp-caption">
-      <div class="cbp-caption-defaultWrap theme-portfolio-active-wrap">
-        <img src="https://{{S3_BUCKET}}.s3.amazonaws.com/{{p.s3_key}}" class="img-responsive" alt="{{p.title or p.original_name}}">
-        <div class="theme-icons-wrap theme-portfolio-lightbox">
-          <a class="cbp-lightbox" href="https://{{S3_BUCKET}}.s3.amazonaws.com/{{p.s3_key}}" data-title="Portfolio">
-            <i class="theme-icons theme-icons-white-bg theme-icons-sm radius-3 icon-focus"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="theme-portfolio-title-heading">
-      <h4 class="theme-portfolio-title">
-        <a href="/download/{{p.id}}">{{p.title or p.original_name}}</a>
-      </h4>
-      <span class="theme-portfolio-subtitle">Uploaded: {{p.created_at}}</span>
-    </div>
-  </div>
-  {% endfor %}
-</div>
+          <div id="portfolio-4-col-grid" class="cbp">
+            {% for p in photos %}
+            <div class="cbp-item idea web-design theme-portfolio-item-v2 
+              theme-portfolio-item-xs">
+              <div class="cbp-caption">
+                <div class="cbp-caption-defaultWrap 
+                  theme-portfolio-active-wrap">
+                  <img src="https://{{S3_BUCKET}}.s3.amazonaws.com/{{p.s3_key}}" alt="">
+                  <div class="theme-icons-wrap theme-portfolio-lightbox">
+                    <a class="cbp-lightbox" href="{{p.URL}}" 
+                      data-title="Portfolio">
+                      <i class="theme-icons theme-icons-white-bg 
+                        theme-icons-sm radius-3 icon-focus"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="theme-portfolio-title-heading">
+                <h4 class="theme-portfolio-title">
+                  <a href="/download/{{p.id}}">{{p.title or p.original_name}}</a>
+                </h4>
+                <span class="theme-portfolio-subtitle">
+                {{p.CreationTime}}</span>
+              </div>
+            </div>
+            {% endfor %}
+
+          </div>
         </div>
       </div>
     </div>
