@@ -10,9 +10,11 @@ import time
 
 import boto3
 import db
-from flask import redirect, request, Response, session, url_for
+from flask import redirect, request, Response, session, url_for, render_template
 from werkzeug.security import check_password_hash, generate_password_hash
 from auth import login_required
+
+
 
 
 
@@ -22,9 +24,12 @@ from auth import login_required
 
 def home():
     """Serve the home page. Logged in: greeting and Log out. Not logged in: Welcome with Sign up or Log in."""
+    bucket = os.environ.get("S3_BUCKET", "assignment-1-images")
     if session.get("user_id"):
-        return f"Hello, {session.get('username', '')}! <a href='/upload'>Upload</a> | <a href='/gallery'>Gallery</a> | <a href='/search'>Search</a> | <a href='/logout'>Log out</a>"
-    return "Welcome. First time? <a href='/signup'>Sign up</a>. Already have an account? <a href='/login'>Log in</a>."
+        photos = db.list_photos(session["user_id"])
+        # pass S3_BUCKET so the template can build the image URLs
+        return render_template("index.html", photos=photos, S3_BUCKET=bucket)
+    return render_template("home.html")
 
 
 def db_check():
@@ -56,33 +61,33 @@ def login():
     POST: Check credentials with db.get_user_by_username and Werkzeug hash;
           on success set session["user_id"], session["username"] and redirect to home.
     """
+    # GET: creating account
     if request.method == "GET":
-        msg = ""
-        if request.args.get("created"):
-            msg = "<p><strong>Account created. Please log in.</strong></p>"
-        return msg + """
-        <h1>Log in</h1>
-        <p>Already have an account? Enter your credentials below.</p>
-        <form method="post" action="/login">
-            <label>Username: <input name="username" type="text" required></label><br>
-            <label>Password: <input name="password" type="password" required></label><br>
-            <button type="submit">Log in</button>
-        </form>
-        <p>Don't have an account? <a href="/signup">Sign up</a></p>
-        """
+        msg = "Account created. Please log in." if request.args.get("created") else ""
+        # This line connects to your new login.html!
+        return render_template("login.html", message=msg)
     # POST: process form
     username = request.form.get("username", "").strip()
     password = request.form.get("password", "")
-    if not username or not password:
-        return "Username and password required.", 400
     user = db.get_user_by_username(username)
-    if not user:
-        return "Invalid username or password.", 401
-    if not check_password_hash(user["password_hash"], password):
-        return "Invalid username or password.", 401
-    session["user_id"] = user["id"]
-    session["username"] = user["username"]
-    return redirect(url_for("home"))
+
+
+    if user and check_password_hash(user["password_hash"], password):
+        session["user_id"] = user["id"]
+        session["username"] = user["username"]
+        return redirect(url_for("home"))
+    return render_template("login.html", error="Invalid credentials.")
+    
+    # if not username or not password:
+    #     return "Username and password required.", 400
+    # user = db.get_user_by_username(username)
+    # if not user:
+    #     return "Invalid username or password.", 401
+    # if not check_password_hash(user["password_hash"], password):
+    #     return "Invalid username or password.", 401
+    # session["user_id"] = user["id"]
+    # session["username"] = user["username"]
+    # return redirect(url_for("home"))
 
 
 
@@ -92,28 +97,40 @@ def signup():
     GET: Show sign-up form (username, password, email).
     POST: Hash password, db.create_user(...), redirect to login.
     """
+
     if request.method == "GET":
-        return """
-        <h1>Sign up</h1>
-        <p>First time? Create an account below.</p>
-        <form method="post" action="/signup">
-            <label>Username: <input name="username" type="text" required></label><br>
-            <label>Password: <input name="password" type="password" required></label><br>
-            <label>Email: <input name="email" type="email"></label><br>
-            <button type="submit">Sign up</button>
-        </form>
-        <p>Already have an account? <a href="/login">Log in</a></p>
-        """
+        return render_template("signup.html")
+    
     username = request.form.get("username", "").strip()
     password = request.form.get("password", "")
-    email = request.form.get("email", "").strip() or None
-    if not username or not password:
-        return "Username and password required.", 400
     if db.get_user_by_username(username):
-        return "Username already taken.", 400
-    password_hash = generate_password_hash(password)
-    db.create_user(username, email, password_hash)
+        return render_template("signup.html", error="Username taken.")
+        
+    db.create_user(username, None, generate_password_hash(password))
     return redirect(url_for("login", created=1))
+
+    # if request.method == "GET":
+    #     return """
+    #     <h1>Sign up</h1>
+    #     <p>First time? Create an account below.</p>
+    #     <form method="post" action="/signup">
+    #         <label>Username: <input name="username" type="text" required></label><br>
+    #         <label>Password: <input name="password" type="password" required></label><br>
+    #         <label>Email: <input name="email" type="email"></label><br>
+    #         <button type="submit">Sign up</button>
+    #     </form>
+    #     <p>Already have an account? <a href="/login">Log in</a></p>
+    #     """
+    # username = request.form.get("username", "").strip()
+    # password = request.form.get("password", "")
+    # email = request.form.get("email", "").strip() or None
+    # if not username or not password:
+    #     return "Username and password required.", 400
+    # if db.get_user_by_username(username):
+    #     return "Username already taken.", 400
+    # password_hash = generate_password_hash(password)
+    # db.create_user(username, email, password_hash)
+    # return redirect(url_for("login", created=1))
 
 
 def logout():
@@ -132,16 +149,10 @@ def upload():
     GET: Show upload form (file, optional title).
     POST: Upload file to S3, save row with db.add_photo, redirect to home.
     """
+
     if request.method == "GET":
-        return """
-        <h1>Upload a photo</h1>
-        <form method="post" action="/upload" enctype="multipart/form-data">
-            <label>Photo: <input type="file" name="photo" accept="image/*" required></label><br>
-            <label>Title (optional): <input type="text" name="title"></label><br>
-            <button type="submit">Upload</button>
-        </form>
-        <p><a href="/">Home</a></p>
-        """
+        return render_template("form.html")
+        
     photo = request.files.get("photo")
     if not photo or photo.filename == "":
         return "No file selected.", 400
@@ -151,95 +162,160 @@ def upload():
     original_name = photo.filename
     safe_name = os.path.basename(original_name).replace(" ", "_")
     bucket = os.environ.get("S3_BUCKET", "assignment-1-images")
-    key = f"{user_id}/{int(time.time())}_{safe_name}"
-    content_type = photo.content_type or "application/octet-stream"
-    body = photo.read()
-    size_bytes = len(body)
+    key = f"{user_id}/{int(time.time())}_{photo.filename.replace(' ', '_')}"
+
+
+    # user_id = session["user_id"]
+    # title = request.form.get("title", "").strip() or None
+    # original_name = photo.filename
+    # safe_name = os.path.basename(original_name).replace(" ", "_")
+    # bucket = os.environ.get("S3_BUCKET", "assignment-1-images")
+    # key = f"{user_id}/{int(time.time())}_{safe_name}"
+    # content_type = photo.content_type or "application/octet-stream"
+    # body = photo.read()
+    # size_bytes = len(body)
 
     try:
         s3 = boto3.client("s3", region_name=os.environ.get("AWS_REGION", "us-east-2"))
-        s3.put_object(Bucket=bucket, Key=key, Body=body, ContentType=content_type)
-        db.add_photo(
-            user_id, bucket, key, original_name,
-            title=title, description=None, tags=None,
-            content_type=content_type, size_bytes=size_bytes,
-        )
+        s3.put_object(Bucket=bucket, Key=key, Body=photo.read(), ContentType=photo.content_type)
+        db.add_photo(user_id, bucket, key, photo.filename, title=title)
     except Exception as e:
         return f"Upload failed: {e}", 500
 
     return redirect(url_for("home"))
+    
+
+
+
+    
+    # if request.method == "GET":
+    #     return """
+    #     <h1>Upload a photo</h1>
+    #     <form method="post" action="/upload" enctype="multipart/form-data">
+    #         <label>Photo: <input type="file" name="photo" accept="image/*" required></label><br>
+    #         <label>Title (optional): <input type="text" name="title"></label><br>
+    #         <button type="submit">Upload</button>
+    #     </form>
+    #     <p><a href="/">Home</a></p>
+    #     """
+    # photo = request.files.get("photo")
+    # if not photo or photo.filename == "":
+    #     return "No file selected.", 400
+
+    # user_id = session["user_id"]
+    # title = request.form.get("title", "").strip() or None
+    # original_name = photo.filename
+    # safe_name = os.path.basename(original_name).replace(" ", "_")
+    # bucket = os.environ.get("S3_BUCKET", "assignment-1-images")
+    # key = f"{user_id}/{int(time.time())}_{safe_name}"
+    # content_type = photo.content_type or "application/octet-stream"
+    # body = photo.read()
+    # size_bytes = len(body)
+
+    # try:
+    #     s3 = boto3.client("s3", region_name=os.environ.get("AWS_REGION", "us-east-2"))
+    #     s3.put_object(Bucket=bucket, Key=key, Body=body, ContentType=content_type)
+    #     db.add_photo(
+    #         user_id, bucket, key, original_name,
+    #         title=title, description=None, tags=None,
+    #         content_type=content_type, size_bytes=size_bytes,
+    #     )
+    # except Exception as e:
+    #     return f"Upload failed: {e}", 500
+
+    # return redirect(url_for("home"))
 
 
 @login_required
 def gallery():
     """List the current user's photos with download links."""
-    user_id = session["user_id"]
-    photos = db.list_photos(user_id)
-    if not photos:
-        return """
-        <h1>Gallery</h1>
-        <p>No photos yet. <a href="/upload">Upload</a> one.</p>
-        <p><a href="/">Home</a></p>
-        """
-    lines = ["<h1>Gallery</h1>", "<ul>"]
-    for p in photos:
-        title = p.get("title") or p.get("original_name", "Photo")
-        lines.append(f'<li>{title} — <a href="/download/{p["id"]}">Download</a></li>')
-    lines.append("</ul>")
-    lines.append('<p><a href="/upload">Upload</a> | <a href="/search">Search</a> | <a href="/">Home</a></p>')
-    return "\n".join(lines)
+
+    bucket = os.environ.get("S3_BUCKET", "assignment-1-images")
+    photos = db.list_photos(session["user_id"])
+    return render_template("index.html", photos=photos, S3_BUCKET=bucket)
+
+    # user_id = session["user_id"]
+    # photos = db.list_photos(user_id)
+    # if not photos:
+    #     return """
+    #     <h1>Gallery</h1>
+    #     <p>No photos yet. <a href="/upload">Upload</a> one.</p>
+    #     <p><a href="/">Home</a></p>
+    #     """
+    # lines = ["<h1>Gallery</h1>", "<ul>"]
+    # for p in photos:
+    #     title = p.get("title") or p.get("original_name", "Photo")
+    #     lines.append(f'<li>{title} — <a href="/download/{p["id"]}">Download</a></li>')
+    # lines.append("</ul>")
+    # lines.append('<p><a href="/upload">Upload</a> | <a href="/search">Search</a> | <a href="/">Home</a></p>')
+    # return "\n".join(lines)
 
 
 @login_required
 def search():
     """Search photos by title, description, or tags; show results with download links."""
     user_id = session["user_id"]
-    q = request.args.get("q", "").strip() or request.form.get("q", "").strip()
-    if not q:
-        return """
-        <h1>Search</h1>
-        <form method="get" action="/search">
-            <label>Search: <input type="text" name="q" placeholder="title, description, or tags"></label>
-            <button type="submit">Search</button>
-        </form>
-        <p><a href="/gallery">Gallery</a> | <a href="/">Home</a></p>
-        """
-    photos = db.search_photos(user_id, q=q)
-    if not photos:
-        return f"""
-        <h1>Search</h1>
-        <p>No results for &quot;{q}&quot;.</p>
-        <p><a href="/search">Search again</a> | <a href="/gallery">Gallery</a> | <a href="/">Home</a></p>
-        """
-    lines = [f"<h1>Search results for &quot;{q}&quot;</h1>", "<ul>"]
-    for p in photos:
-        title = p.get("title") or p.get("original_name", "Photo")
-        lines.append(f'<li>{title} — <a href="/download/{p["id"]}">Download</a></li>')
-    lines.append("</ul>")
-    lines.append('<p><a href="/search">Search again</a> | <a href="/gallery">Gallery</a> | <a href="/">Home</a></p>')
-    return "\n".join(lines)
+    q = request.args.get("q", "").strip()
+    bucket = os.environ.get("S3_BUCKET", "assignment-1-images")
+    photos = db.search_photos(user_id, q=q) if q else []
+    return render_template("search.html", photos=photos, query=q, S3_BUCKET=bucket)
+
+    # user_id = session["user_id"]
+    # q = request.args.get("q", "").strip() or request.form.get("q", "").strip()
+    # if not q:
+    #     return """
+    #     <h1>Search</h1>
+    #     <form method="get" action="/search">
+    #         <label>Search: <input type="text" name="q" placeholder="title, description, or tags"></label>
+    #         <button type="submit">Search</button>
+    #     </form>
+    #     <p><a href="/gallery">Gallery</a> | <a href="/">Home</a></p>
+    #     """
+    # photos = db.search_photos(user_id, q=q)
+    # if not photos:
+    #     return f"""
+    #     <h1>Search</h1>
+    #     <p>No results for &quot;{q}&quot;.</p>
+    #     <p><a href="/search">Search again</a> | <a href="/gallery">Gallery</a> | <a href="/">Home</a></p>
+    #     """
+    # lines = [f"<h1>Search results for &quot;{q}&quot;</h1>", "<ul>"]
+    # for p in photos:
+    #     title = p.get("title") or p.get("original_name", "Photo")
+    #     lines.append(f'<li>{title} — <a href="/download/{p["id"]}">Download</a></li>')
+    # lines.append("</ul>")
+    # lines.append('<p><a href="/search">Search again</a> | <a href="/gallery">Gallery</a> | <a href="/">Home</a></p>')
+    # return "\n".join(lines)
 
 
 @login_required
 def download(photo_id):
     """Stream the photo from S3 so the user can download it."""
+
     user_id = session["user_id"]
     photo = db.get_photo(photo_id, user_id)
-    if not photo:
-        return "Photo not found.", 404
-    bucket = photo["s3_bucket"]
-    key = photo["s3_key"]
-    content_type = photo.get("content_type") or "application/octet-stream"
-    filename = photo.get("original_name") or "photo"
-    try:
-        s3 = boto3.client("s3", region_name=os.environ.get("AWS_REGION", "us-east-2"))
-        obj = s3.get_object(Bucket=bucket, Key=key)
-        body = obj["Body"].read()
-    except Exception as e:
-        return f"Download failed: {e}", 500
-    resp = Response(body, content_type=content_type)
-    resp.headers["Content-Disposition"] = f'attachment; filename="{filename}"'
-    return resp
+    if not photo: return "Not found.", 404
+    
+    s3 = boto3.client("s3", region_name=os.environ.get("AWS_REGION", "us-east-2"))
+    obj = s3.get_object(Bucket=photo["s3_bucket"], Key=photo["s3_key"])
+    return Response(obj["Body"].read(), content_type=photo.get("content_type"),
+                    headers={"Content-Disposition": f"attachment; filename={photo['original_name']}"})
+    # user_id = session["user_id"]
+    # photo = db.get_photo(photo_id, user_id)
+    # if not photo:
+    #     return "Photo not found.", 404
+    # bucket = photo["s3_bucket"]
+    # key = photo["s3_key"]
+    # content_type = photo.get("content_type") or "application/octet-stream"
+    # filename = photo.get("original_name") or "photo"
+    # try:
+    #     s3 = boto3.client("s3", region_name=os.environ.get("AWS_REGION", "us-east-2"))
+    #     obj = s3.get_object(Bucket=bucket, Key=key)
+    #     body = obj["Body"].read()
+    # except Exception as e:
+    #     return f"Download failed: {e}", 500
+    # resp = Response(body, content_type=content_type)
+    # resp.headers["Content-Disposition"] = f'attachment; filename="{filename}"'
+    # return resp
 
 
 # ---------------------------------------------------------------------------
