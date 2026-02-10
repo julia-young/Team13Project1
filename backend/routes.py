@@ -254,11 +254,27 @@ def gallery():
 @login_required
 def search():
     """Search photos by title, description, or tags; show results with download links."""
+
     user_id = session["user_id"]
-    q = request.args.get("q", "").strip()
+    # Change 'q' to 'query' to match your HTML input name
+    q = request.args.get("query", "").strip() 
     bucket = os.environ.get("S3_BUCKET", "assignment-1-images")
     photos = db.search_photos(user_id, q=q) if q else []
+    # Ensure query=q is passed so the "Showing search results for..." text works
     return render_template("search.html", photos=photos, query=q, S3_BUCKET=bucket)
+
+
+
+
+    # user_id = session["user_id"]
+    # q = request.args.get("q", "").strip()
+    # bucket = os.environ.get("S3_BUCKET", "assignment-1-images")
+    # photos = db.search_photos(user_id, q=q) if q else []
+    # return render_template("search.html", photos=photos, query=q, S3_BUCKET=bucket)
+
+
+
+    
 
     # user_id = session["user_id"]
     # q = request.args.get("q", "").strip() or request.form.get("q", "").strip()
