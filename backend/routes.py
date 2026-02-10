@@ -27,9 +27,11 @@ def home():
     bucket = os.environ.get("S3_BUCKET", "assignment-1-images")
     if session.get("user_id"):
         photos = db.list_photos(session["user_id"])
-        # pass S3_BUCKET so the template can build the image URLs
         return render_template("index.html", photos=photos, S3_BUCKET=bucket)
-    return render_template("home.html")
+    # Change "home.html" to "login.html" if you want them to log in first
+    return render_template("login.html")
+    
+
 
 
 def db_check():
@@ -274,7 +276,7 @@ def search():
 
 
 
-    
+
 
     # user_id = session["user_id"]
     # q = request.args.get("q", "").strip() or request.form.get("q", "").strip()
@@ -349,6 +351,7 @@ def app_routes(app):
     app.add_url_rule("/login", "login", login, methods=["GET", "POST"])
     app.add_url_rule("/signup", "signup", signup, methods=["GET", "POST"])
     app.add_url_rule("/logout", "logout", logout)
+    app.add_url_rule("/add", "upload", upload, methods=["GET", "POST"])
     app.add_url_rule("/upload", "upload", upload, methods=["GET", "POST"])
     app.add_url_rule("/gallery", "gallery", gallery)
     app.add_url_rule("/search", "search", search, methods=["GET", "POST"])
