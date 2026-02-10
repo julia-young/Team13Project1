@@ -13,7 +13,7 @@ from routes import app_routes
 # Create the Flask app
 # ---------------------------------------------------------------------------
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='assets', static_url_path='/assets')
 
 # Required for session (login). Use env var on EC2; dev default for local.
 app.config["SECRET_KEY"] = "dev-secret-change-on-ec2"
