@@ -2,3 +2,4 @@ flask
 pymysql
 cryptography
 boto3
+pymongo

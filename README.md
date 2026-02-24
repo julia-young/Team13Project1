@@ -1,125 +1,168 @@
-# Team 13 Project 1 — Cloud Photo Gallery
+# Team 13 Project 2 — Cloud Photo Gallery
+DynamoDB + MongoDB + Migration
 
-## What you need to know after pulling
+## OVERVIEW
 
-- **Repo layout:** Same as before: we have `backend/` (and `frontend/` if present). New stuff in `backend/`:
-  - `app.py` — Flask entry point; run this to start the app.
-  - `routes.py` — All routes: login, signup, upload, gallery, search, download.
-  - `auth.py` — Login-required protection for those routes.
-  - `db.py` — Same module from Person 2; we use it for users and photos.
-  - `schema.sql` — Same schema from Person 1; used by `init_db.py`.
-  - `init_db.py` — One-time script to create the DB and tables on RDS (run once per environment).
-  - **`requirements.txt`** — Python dependencies. You must run `pip install -r requirements.txt` after pulling (see below).
+This project extends Project 1 by replacing the MySQL (RDS)
+database with:
 
-- **Running and testing:** The database (RDS) is only reachable from inside the VPC. So **you cannot fully run or test the app from your laptop** — login, signup, upload, gallery, search, and download only work when the app is running **on EC2**. To test your code: push to `main`, then on the EC2 instance pull the latest changes and run the app there (steps below).
+- Part A: Amazon DynamoDB
+- Part B: MongoDB
+- Part C: Migration from DynamoDB → MongoDB
 
----
+We reuse:
+- The same Flask backend (app.py, routes.py, auth.py)
+- The same S3 image storage
+- The same EC2 deployment workflow
 
-## How to get set up (after you pull)
+Only the database layer changes using an environment variable.
 
-### 1. Install dependencies
 
-We use a virtual environment and `requirements.txt`:
+## REPOSITORY STRUCTURE
 
-```bash
-cd backend
-python3 -m venv venv
-source venv/bin/activate   # Windows: venv\Scripts\activate
-pip install -r requirements.txt
-```
+backend/
+  app.py           Flask entry point
+  routes.py        All routes (login, signup, upload, etc.)
+  auth.py          Login protection
+  db.py            Database switch layer
+  db_dynamo.py     DynamoDB implementation (Part A)
+  db_mongo.py      MongoDB implementation (Part B)
+  requirements.txt Python dependencies
 
-### 2. Environment variables
 
-The app needs these to connect to RDS (and optionally to override S3/region):
 
-| Variable    | Required | Description |
-|------------|----------|--------------|
-| `DB_HOST`  | Yes      | RDS endpoint |
-| `DB_USER`  | Yes      | RDS username |
-| `DB_PASS`  | Yes      | RDS password |
-| `DB_NAME`  | No       | Default: `photo_gallery` |
-| `DB_PORT`  | No       | Default: `3306` |
-| `S3_BUCKET`| No       | Default: `assignment-1-images` |
-| `AWS_REGION`| No     | Default: `us-east-2` |
+## DATABASE SWITCHING
 
-Example (use our real RDS values):
+Set this environment variable before running:
 
-```bash
-export DB_HOST="project-1-db.xxxx.us-east-2.rds.amazonaws.com"
-export DB_USER="admin"
-export DB_PASS="our-db-password"
-export DB_NAME="photo_gallery"
-export DB_PORT="3306"
-```
+For DynamoDB:
+  export DB_PROVIDER="dynamo"
 
-On EC2, S3 access uses the **instance IAM role** (no keys in env). The role must have access to the S3 bucket we use.
+For MongoDB:
+  export DB_PROVIDER="mongo"
 
-### 3. First-time DB setup (once per environment)
+db.py will automatically load the correct backend.
 
-If the `photo_gallery` database and tables don’t exist on RDS yet, someone runs this **once** from a machine that can reach RDS (i.e. from EC2):
 
-```bash
-cd backend
-source venv/bin/activate
-# Set DB_* env vars (see above), then:
-python init_db.py
-```
+## SETUP INSTRUCTIONS (AFTER PULLING)
 
-You should see: `Schema applied: photo_gallery database and tables created.` After that, no need to run it again for that environment.
+1) Install dependencies
 
----
+  cd backend
+  python3 -m venv venv
+  source venv/bin/activate        # Windows: venv\Scripts\activate
+  pip install -r requirements.txt
 
-## How we run and test: push to main, then run on EC2
 
-Because the app only connects to the database when it runs inside the VPC:
+## ENVIRONMENT VARIABLES
 
-1. **Push your changes to `main`** (so EC2 can pull them).
-2. **SSH (or EC2 Instance Connect) into the EC2 instance.**
-3. **On EC2:** Pull the latest code, then run the app:
+Core (Required for ALL parts):
 
-```bash
-cd ~/Team13Project1   # or wherever we cloned the repo
-git pull origin main
+  export SECRET_KEY="your-production-secret"
+  export S3_BUCKET="assignment-1-images"
+  export AWS_REGION="us-east-2"
+  export DB_PROVIDER="dynamo"     # or mongo
 
-cd backend
-source venv/bin/activate
-# If venv doesn’t exist yet: python3 -m venv venv && pip install -r requirements.txt
-export DB_HOST="project-1-db.xxxx.us-east-2.rds.amazonaws.com"
-export DB_USER="admin"
-export DB_PASS="our-db-password"
-export DB_NAME="photo_gallery"
-export DB_PORT="3306"
-python app.py
-```
 
-4. **In your browser:** Open **http://&lt;EC2-public-IP&gt;:5000** (e.g. `http://3.19.120.171:5000`).  
-   Make sure the EC2 security group allows **inbound port 5000**.
+Part A — DynamoDB:
 
-That’s the workflow: **push to main → pull on EC2 → run the app on EC2 → test in the browser.** You can’t fully test login/upload/gallery/search from your laptop because RDS isn’t reachable from outside the VPC.
+  export DDB_USERS_TABLE="users"
+  export DDB_PHOTOS_TABLE="photos"
 
----
+Requirements:
+  - DynamoDB tables must exist
+  - EC2 IAM role must allow access to DynamoDB and S3
 
-## What the app does (routes)
 
-| Route | Description |
-|-------|-------------|
-| `/` | Home. Not logged in: Welcome + Sign up / Log in. Logged in: Upload, Gallery, Search, Log out. |
-| `/signup` | Create account. |
-| `/login` | Log in. |
-| `/logout` | Log out. |
-| `/upload` | Upload a photo (S3 + DB). |
-| `/gallery` | List your photos with download links. |
-| `/search` | Search your photos; results with download links. |
-| `/download/<id>` | Download a photo by ID from S3. |
-| `/db-check` | Quick check: can the app connect to RDS? |
+Part B — MongoDB:
 
-Everything except `/`, `/login`, `/signup`, and `/db-check` requires being logged in.
+  export MONGO_URI="mongodb://username:password@host:27017/photo_gallery"
 
----
+Requirements:
+  - MongoDB must be reachable from EC2
+  - Connection string must include credentials and DB name
 
-## Quick reference
 
-- **Dependencies:** `backend/requirements.txt` → `pip install -r requirements.txt` (inside venv).
-- **Start app:** `cd backend`, activate venv, set env vars, `python app.py`.
-- **Where it runs:** On EC2, so we can reach RDS and S3. Push to main, pull on EC2, then run and test there.
- 
+## RUNNING AND TESTING (EC2 WORKFLOW)
+
+Because the databases are inside AWS, testing must be done on EC2.
+
+Workflow:
+
+1) Push changes to main
+2) SSH into EC2
+3) Pull latest code
+4) Set environment variables
+5) Run the app
+
+Commands:
+
+  cd ~/Team13Project2
+  git pull origin main
+
+  cd backend
+  source venv/bin/activate
+
+  export SECRET_KEY="some-long-random-secret"
+  export DB_PROVIDER="dynamo"
+  export S3_BUCKET="assignment-1-images"
+  export AWS_REGION="us-east-2"
+
+  # Also export Dynamo or Mongo variables depending on part
+
+  python app.py
+
+Then open in your browser:
+
+  http://<EC2-public-IP>:5000
+
+Make sure EC2 security group allows inbound port 5000.
+
+
+## APPLICATION ROUTES
+
+/                     Home
+/signup               Create account
+/login                Log in
+/logout               Log out
+/upload               Upload photo (S3 + DB)
+/gallery              View uploaded photos
+/search               Search photos
+/download/<id>        Download photo from S3
+/db-check             Check database connectivity
+
+All routes except /, /signup, /login, and /db-check require login.
+
+
+## MIGRATION (PART C)
+
+Migration from DynamoDB → MongoDB must:
+
+1) Read all users and photos from DynamoDB
+2) Insert them into MongoDB
+3) Preserve all fields and relationships
+
+Manual data re-entry is not allowed.
+
+
+## IMPORTANT NOTES
+
+- S3 access uses the EC2 IAM role.
+- No AWS access keys are stored in environment variables.
+- Database provider switching is controlled by DB_PROVIDER.
+- Application logic and routes remain unchanged from Project 1.
+
+
+## QUICK REFERENCE
+
+Install deps:
+  pip install -r requirements.txt
+
+Activate venv:
+  source venv/bin/activate
+
+Start app:
+  python app.py
+
+Test:
+  http://<EC2-public-IP>:5000
