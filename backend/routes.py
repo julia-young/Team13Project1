@@ -36,21 +36,35 @@ def home():
 
 def db_check():
     """
-    Check that the app can connect to the RDS database.
-
-    Uses db.get_conn() which reads DB_HOST, DB_USER, DB_PASS from env.
-    - Success: returns "DB connection successful".
-    - Failure: returns error message (e.g. missing env, timeout from local Mac).
-    RDS is only reachable from EC2 (same VPC); local runs may timeout.
+    Check database connectivity based on DB_PROVIDER.
+    Supports: dynamo, mongo, mysql (legacy Project 1).
     """
     try:
-        with db.get_conn() as conn:
-            with conn.cursor() as cur:
-                cur.execute("SELECT 1")
-        return "DB connection successful."
+        import os
+        provider = os.environ.get("DB_PROVIDER", "mysql")
+
+        if provider == "dynamo":
+            import boto3
+            region = os.environ.get("AWS_REGION", "us-east-2")
+            ddb = boto3.client("dynamodb", region_name=region)
+            ddb.list_tables()
+            return "DynamoDB connection successful."
+
+        elif provider == "mongo":
+            from pymongo import MongoClient
+            client = MongoClient(os.environ.get("MONGO_URI"))
+            client.admin.command("ping")
+            return "MongoDB connection successful."
+
+        else:
+            # Legacy MySQL (Project 1)
+            with db.get_conn() as conn:
+                with conn.cursor() as cur:
+                    cur.execute("SELECT 1")
+            return "MySQL connection successful."
+
     except Exception as e:
         return f"DB connection failed: {e}", 500
-
 
 # ---------------------------------------------------------------------------
 # Auth routes (login, logout)

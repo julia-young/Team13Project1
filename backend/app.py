@@ -16,8 +16,8 @@ from routes import app_routes
 app = Flask(__name__, static_folder='assets', static_url_path='/assets')
 
 # Required for session (login). Use env var on EC2; dev default for local.
-app.config["SECRET_KEY"] = "dev-secret-change-on-ec2"
-
+import os
+app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", "dev-secret-change-on-ec2")
 
 # ---------------------------------------------------------------------------
 # App routes: attach URL paths to handlers (login, upload, gallery, etc. in routes.py)

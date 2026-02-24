@@ -12,3 +12,5 @@ __pycache__/
 
 AWS_MCP_SETUP.md
 PROJECT_PLAN.md
+
+*.pem
