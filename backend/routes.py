@@ -329,8 +329,8 @@ def download(photo_id):
     
     s3 = boto3.client("s3", region_name=os.environ.get("AWS_REGION", "us-east-2"))
     obj = s3.get_object(Bucket=photo["s3_bucket"], Key=photo["s3_key"])
-    return Response(obj["Body"].read(), content_type=photo.get("content_type"),
-                    headers={"Content-Disposition": f"attachment; filename={photo['original_name']}"})
+    return Response(obj["Body"].read(), content_type=photo.get("content_type")),
+    headers={"Content-Disposition": f"attachment; filename={photo['original_name']}"}
     # user_id = session["user_id"]
     # photo = db.get_photo(photo_id, user_id)
     # if not photo:

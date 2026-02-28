@@ -1,0 +1,514 @@
+nohup: ignoring input
+ * Serving Flask app 'app'
+ * Debug mode: on
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.31.16.244:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 381-349-412
+104.145.100.42 - - [27/Feb/2026 01:12:29] "GET / HTTP/1.1" 200 -
+104.145.100.42 - - [27/Feb/2026 01:12:29] "[36mGET /assets/plugins/bootstrap/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:12:29] "[36mGET /assets/plugins/font-awesome/css/font-awesome.min.css HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:12:29] "[36mGET /assets/plugins/themify/themify.css HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:12:29] "[36mGET /assets/plugins/cubeportfolio/css/cubeportfolio.min.css HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:12:29] "[36mGET /assets/css/global.css HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:12:29] "[36mGET /assets/plugins/jquery.min.js HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:12:29] "[36mGET /assets/plugins/bootstrap/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:12:29] "[36mGET /assets/plugins/cubeportfolio/js/jquery.cubeportfolio.min.js HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:12:29] "[36mGET /assets/scripts/portfolio/portfolio-4-col-grid.js HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:12:29] "[36mGET /assets/scripts/app.js HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:12:32] "[32mGET /logout HTTP/1.1[0m" 302 -
+104.145.100.42 - - [27/Feb/2026 01:12:32] "GET /login HTTP/1.1" 200 -
+104.145.100.42 - - [27/Feb/2026 01:12:32] "[36mGET /assets/plugins/bootstrap/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:12:32] "[36mGET /assets/css/global.css HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:12:45] "GET / HTTP/1.1" 200 -
+104.145.100.42 - - [27/Feb/2026 01:12:46] "[36mGET /assets/plugins/bootstrap/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:12:46] "[36mGET /assets/css/global.css HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:12:57] "GET / HTTP/1.1" 200 -
+104.145.100.42 - - [27/Feb/2026 01:12:57] "[36mGET /assets/plugins/bootstrap/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:12:57] "[36mGET /assets/css/global.css HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:13:15] "GET / HTTP/1.1" 200 -
+104.145.100.42 - - [27/Feb/2026 01:13:15] "[36mGET /assets/plugins/bootstrap/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:13:15] "[36mGET /assets/css/global.css HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:13:28] "[32mPOST /login HTTP/1.1[0m" 302 -
+104.145.100.42 - - [27/Feb/2026 01:13:28] "GET / HTTP/1.1" 200 -
+104.145.100.42 - - [27/Feb/2026 01:13:28] "[36mGET /assets/plugins/font-awesome/css/font-awesome.min.css HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:13:28] "[36mGET /assets/plugins/bootstrap/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:13:28] "[36mGET /assets/css/global.css HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:13:28] "[36mGET /assets/plugins/cubeportfolio/css/cubeportfolio.min.css HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:13:28] "[36mGET /assets/plugins/themify/themify.css HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:13:28] "[36mGET /assets/plugins/jquery.min.js HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:13:28] "[36mGET /assets/scripts/app.js HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:13:28] "[36mGET /assets/plugins/cubeportfolio/js/jquery.cubeportfolio.min.js HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:13:28] "[36mGET /assets/plugins/bootstrap/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:13:28] "[36mGET /assets/scripts/portfolio/portfolio-4-col-grid.js HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:13:34] "[32mGET /logout HTTP/1.1[0m" 302 -
+104.145.100.42 - - [27/Feb/2026 01:13:34] "GET /login HTTP/1.1" 200 -
+104.145.100.42 - - [27/Feb/2026 01:13:34] "[36mGET /assets/plugins/bootstrap/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:13:34] "[36mGET /assets/css/global.css HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:13:44] "GET /signup HTTP/1.1" 200 -
+104.145.100.42 - - [27/Feb/2026 01:13:44] "[36mGET /assets/plugins/bootstrap/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:13:44] "[36mGET /assets/css/global.css HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:13:52] "[32mPOST /signup HTTP/1.1[0m" 302 -
+104.145.100.42 - - [27/Feb/2026 01:13:52] "GET /login?created=1 HTTP/1.1" 200 -
+104.145.100.42 - - [27/Feb/2026 01:13:52] "[36mGET /assets/plugins/bootstrap/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:13:52] "[36mGET /assets/css/global.css HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:13:59] "[32mPOST /login HTTP/1.1[0m" 302 -
+104.145.100.42 - - [27/Feb/2026 01:13:59] "GET / HTTP/1.1" 200 -
+104.145.100.42 - - [27/Feb/2026 01:13:59] "[36mGET /assets/plugins/bootstrap/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:13:59] "[36mGET /assets/plugins/font-awesome/css/font-awesome.min.css HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:13:59] "[36mGET /assets/css/global.css HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:13:59] "[36mGET /assets/plugins/cubeportfolio/css/cubeportfolio.min.css HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:13:59] "[36mGET /assets/plugins/themify/themify.css HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:13:59] "[36mGET /assets/plugins/jquery.min.js HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:13:59] "[36mGET /assets/plugins/bootstrap/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:13:59] "[36mGET /assets/plugins/cubeportfolio/js/jquery.cubeportfolio.min.js HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:13:59] "[36mGET /assets/scripts/app.js HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:13:59] "[36mGET /assets/scripts/portfolio/portfolio-4-col-grid.js HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:14:03] "GET /add HTTP/1.1" 200 -
+104.145.100.42 - - [27/Feb/2026 01:14:03] "[36mGET /assets/plugins/bootstrap/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:14:03] "[36mGET /assets/plugins/jquery.min.js HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:14:03] "[36mGET /assets/css/global.css HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:14:03] "[36mGET /assets/plugins/bootstrap/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:14:03] "[36mGET /assets/scripts/app.js HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:14:07] "GET / HTTP/1.1" 200 -
+104.145.100.42 - - [27/Feb/2026 01:14:07] "[36mGET /assets/plugins/bootstrap/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:14:07] "[36mGET /assets/plugins/font-awesome/css/font-awesome.min.css HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:14:07] "[36mGET /assets/plugins/cubeportfolio/css/cubeportfolio.min.css HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:14:07] "[36mGET /assets/css/global.css HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:14:07] "[36mGET /assets/plugins/themify/themify.css HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:14:07] "[36mGET /assets/plugins/jquery.min.js HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:14:07] "[36mGET /assets/plugins/bootstrap/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:14:07] "[36mGET /assets/plugins/cubeportfolio/js/jquery.cubeportfolio.min.js HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:14:07] "[36mGET /assets/scripts/app.js HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:14:07] "[36mGET /assets/scripts/portfolio/portfolio-4-col-grid.js HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:14:08] "[32mGET /logout HTTP/1.1[0m" 302 -
+104.145.100.42 - - [27/Feb/2026 01:14:08] "GET /login HTTP/1.1" 200 -
+104.145.100.42 - - [27/Feb/2026 01:14:08] "[36mGET /assets/plugins/bootstrap/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:14:08] "[36mGET /assets/css/global.css HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:16:43] "GET / HTTP/1.1" 200 -
+104.145.100.42 - - [27/Feb/2026 01:16:43] "[36mGET /assets/plugins/bootstrap/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:16:43] "[36mGET /assets/css/global.css HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:16:51] "[32mPOST /login HTTP/1.1[0m" 302 -
+104.145.100.42 - - [27/Feb/2026 01:16:51] "GET / HTTP/1.1" 200 -
+104.145.100.42 - - [27/Feb/2026 01:16:51] "[36mGET /assets/plugins/bootstrap/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:16:51] "[36mGET /assets/plugins/font-awesome/css/font-awesome.min.css HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:16:51] "[36mGET /assets/plugins/themify/themify.css HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:16:51] "[36mGET /assets/plugins/cubeportfolio/css/cubeportfolio.min.css HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:16:51] "[36mGET /assets/css/global.css HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:16:51] "[36mGET /assets/plugins/jquery.min.js HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:16:51] "[36mGET /assets/plugins/bootstrap/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:16:51] "[36mGET /assets/scripts/app.js HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:16:51] "[36mGET /assets/plugins/cubeportfolio/js/jquery.cubeportfolio.min.js HTTP/1.1[0m" 304 -
+104.145.100.42 - - [27/Feb/2026 01:16:51] "[36mGET /assets/scripts/portfolio/portfolio-4-col-grid.js HTTP/1.1[0m" 304 -
+176.32.195.85 - - [27/Feb/2026 06:01:08] code 400, message Bad request version ("¯nãY»bhlÿ(=':©\x82ÙoÈ¢×\x93\x98´ï\x80å¹\x90\x00(À")
+176.32.195.85 - - [27/Feb/2026 06:01:08] "[31m[1m\x16\x03\x02\x01o\x01\x00\x01k\x03\x02RHÅ\x1a#÷:Nßâ´\x82/ÿ\x09T\x9f§Äy°hÆ\x13\x8c¤\x1c="á\x1a\x98 \x84´,\x85¯nãY»bhlÿ(=':©\x82ÙoÈ¢×\x93\x98´ï\x80å¹\x90\x00(À[0m" 400 -
+69.5.154.193 - - [27/Feb/2026 08:28:40] "GET / HTTP/1.1" 200 -
+69.5.154.193 - - [27/Feb/2026 08:28:40] "GET /assets/plugins/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 -
+69.5.154.193 - - [27/Feb/2026 08:28:41] "GET /assets/css/global.css HTTP/1.1" 200 -
+69.5.154.193 - - [27/Feb/2026 08:28:41] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+136.22.130.6 - - [27/Feb/2026 08:28:51] "GET / HTTP/1.1" 200 -
+136.22.130.6 - - [27/Feb/2026 08:28:51] "GET /assets/plugins/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 -
+136.22.130.6 - - [27/Feb/2026 08:28:51] "GET /assets/css/global.css HTTP/1.1" 200 -
+136.22.130.6 - - [27/Feb/2026 08:28:52] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+69.5.154.193 - - [27/Feb/2026 08:28:59] "[32mPOST /login HTTP/1.1[0m" 302 -
+69.5.154.193 - - [27/Feb/2026 08:28:59] "GET / HTTP/1.1" 200 -
+69.5.154.193 - - [27/Feb/2026 08:29:00] "GET /assets/plugins/themify/themify.css HTTP/1.1" 200 -
+69.5.154.193 - - [27/Feb/2026 08:29:00] "GET /assets/plugins/font-awesome/css/font-awesome.min.css HTTP/1.1" 200 -
+69.5.154.193 - - [27/Feb/2026 08:29:00] "[36mGET /assets/plugins/bootstrap/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+69.5.154.193 - - [27/Feb/2026 08:29:00] "GET /assets/plugins/cubeportfolio/css/cubeportfolio.min.css HTTP/1.1" 200 -
+69.5.154.193 - - [27/Feb/2026 08:29:00] "[36mGET /assets/css/global.css HTTP/1.1[0m" 304 -
+69.5.154.193 - - [27/Feb/2026 08:29:00] "GET /assets/plugins/jquery.min.js HTTP/1.1" 200 -
+69.5.154.193 - - [27/Feb/2026 08:29:00] "GET /assets/plugins/cubeportfolio/js/jquery.cubeportfolio.min.js HTTP/1.1" 200 -
+69.5.154.193 - - [27/Feb/2026 08:29:00] "GET /assets/plugins/bootstrap/js/bootstrap.min.js HTTP/1.1" 200 -
+69.5.154.193 - - [27/Feb/2026 08:29:00] "GET /assets/scripts/app.js HTTP/1.1" 200 -
+69.5.154.193 - - [27/Feb/2026 08:29:00] "GET /assets/scripts/portfolio/portfolio-4-col-grid.js HTTP/1.1" 200 -
+69.5.154.193 - - [27/Feb/2026 08:29:03] "[35m[1mGET /download/1772055454419 HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ubuntu/Team13Project1/backend/venv/lib/python3.12/site-packages/flask/app.py", line 1536, in __call__
+    return self.wsgi_app(environ, start_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/Team13Project1/backend/venv/lib/python3.12/site-packages/flask/app.py", line 1514, in wsgi_app
+    response = self.handle_exception(e)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/Team13Project1/backend/venv/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/Team13Project1/backend/venv/lib/python3.12/site-packages/flask/app.py", line 920, in full_dispatch_request
+    return self.finalize_request(rv)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/Team13Project1/backend/venv/lib/python3.12/site-packages/flask/app.py", line 939, in finalize_request
+    response = self.make_response(rv)
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/Team13Project1/backend/venv/lib/python3.12/site-packages/flask/app.py", line 1204, in make_response
+    raise TypeError(
+TypeError: The view function did not return a valid response tuple. The tuple must have the form (body, status, headers), (body, status), or (body, headers).
+69.5.154.193 - - [27/Feb/2026 08:29:03] "GET /download/1772055454419?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+69.5.154.193 - - [27/Feb/2026 08:29:03] "GET /download/1772055454419?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+69.5.154.193 - - [27/Feb/2026 08:29:03] "GET /download/1772055454419?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+63.117.14.135 - - [27/Feb/2026 08:29:06] "GET /login HTTP/1.1" 200 -
+63.117.14.135 - - [27/Feb/2026 08:29:06] "GET /assets/plugins/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 -
+63.117.14.135 - - [27/Feb/2026 08:29:06] "GET /assets/css/global.css HTTP/1.1" 200 -
+63.117.14.135 - - [27/Feb/2026 08:29:07] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+69.5.154.193 - - [27/Feb/2026 08:29:09] "[35m[1mGET /download/1772055443415 HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ubuntu/Team13Project1/backend/venv/lib/python3.12/site-packages/flask/app.py", line 1536, in __call__
+    return self.wsgi_app(environ, start_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/Team13Project1/backend/venv/lib/python3.12/site-packages/flask/app.py", line 1514, in wsgi_app
+    response = self.handle_exception(e)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/Team13Project1/backend/venv/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/Team13Project1/backend/venv/lib/python3.12/site-packages/flask/app.py", line 920, in full_dispatch_request
+    return self.finalize_request(rv)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/Team13Project1/backend/venv/lib/python3.12/site-packages/flask/app.py", line 939, in finalize_request
+    response = self.make_response(rv)
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/Team13Project1/backend/venv/lib/python3.12/site-packages/flask/app.py", line 1204, in make_response
+    raise TypeError(
+TypeError: The view function did not return a valid response tuple. The tuple must have the form (body, status, headers), (body, status), or (body, headers).
+69.5.154.193 - - [27/Feb/2026 08:29:09] "GET /download/1772055443415?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+69.5.154.193 - - [27/Feb/2026 08:29:09] "GET /download/1772055443415?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+69.5.154.193 - - [27/Feb/2026 08:29:09] "GET /download/1772055443415?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+69.5.154.193 - - [27/Feb/2026 08:29:14] "GET /add HTTP/1.1" 200 -
+69.5.154.193 - - [27/Feb/2026 08:29:14] "[36mGET /assets/plugins/bootstrap/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+69.5.154.193 - - [27/Feb/2026 08:29:14] "[36mGET /assets/css/global.css HTTP/1.1[0m" 304 -
+69.5.154.193 - - [27/Feb/2026 08:29:14] "[36mGET /assets/plugins/jquery.min.js HTTP/1.1[0m" 304 -
+69.5.154.193 - - [27/Feb/2026 08:29:14] "[36mGET /assets/plugins/bootstrap/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+69.5.154.193 - - [27/Feb/2026 08:29:14] "[36mGET /assets/scripts/app.js HTTP/1.1[0m" 304 -
+69.5.154.193 - - [27/Feb/2026 08:29:23] "[32mPOST /upload HTTP/1.1[0m" 302 -
+69.5.154.193 - - [27/Feb/2026 08:29:23] "GET / HTTP/1.1" 200 -
+69.5.154.193 - - [27/Feb/2026 08:29:23] "[36mGET /assets/plugins/bootstrap/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+69.5.154.193 - - [27/Feb/2026 08:29:23] "[36mGET /assets/plugins/cubeportfolio/css/cubeportfolio.min.css HTTP/1.1[0m" 304 -
+69.5.154.193 - - [27/Feb/2026 08:29:23] "[36mGET /assets/css/global.css HTTP/1.1[0m" 304 -
+69.5.154.193 - - [27/Feb/2026 08:29:23] "[36mGET /assets/plugins/font-awesome/css/font-awesome.min.css HTTP/1.1[0m" 304 -
+69.5.154.193 - - [27/Feb/2026 08:29:23] "[36mGET /assets/plugins/themify/themify.css HTTP/1.1[0m" 304 -
+69.5.154.193 - - [27/Feb/2026 08:29:23] "[36mGET /assets/plugins/jquery.min.js HTTP/1.1[0m" 304 -
+69.5.154.193 - - [27/Feb/2026 08:29:23] "[36mGET /assets/plugins/bootstrap/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+69.5.154.193 - - [27/Feb/2026 08:29:23] "[36mGET /assets/scripts/app.js HTTP/1.1[0m" 304 -
+69.5.154.193 - - [27/Feb/2026 08:29:23] "[36mGET /assets/plugins/cubeportfolio/js/jquery.cubeportfolio.min.js HTTP/1.1[0m" 304 -
+69.5.154.193 - - [27/Feb/2026 08:29:23] "[36mGET /assets/scripts/portfolio/portfolio-4-col-grid.js HTTP/1.1[0m" 304 -
+69.5.154.193 - - [27/Feb/2026 08:29:26] "GET /search?query=test HTTP/1.1" 200 -
+69.5.154.193 - - [27/Feb/2026 08:29:26] "[36mGET /assets/plugins/bootstrap/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+69.5.154.193 - - [27/Feb/2026 08:29:26] "[36mGET /assets/plugins/themify/themify.css HTTP/1.1[0m" 304 -
+69.5.154.193 - - [27/Feb/2026 08:29:26] "[36mGET /assets/plugins/cubeportfolio/css/cubeportfolio.min.css HTTP/1.1[0m" 304 -
+69.5.154.193 - - [27/Feb/2026 08:29:26] "[36mGET /assets/plugins/font-awesome/css/font-awesome.min.css HTTP/1.1[0m" 304 -
+69.5.154.193 - - [27/Feb/2026 08:29:26] "[36mGET /assets/css/global.css HTTP/1.1[0m" 304 -
+69.5.154.193 - - [27/Feb/2026 08:29:26] "[36mGET /assets/plugins/jquery.min.js HTTP/1.1[0m" 304 -
+69.5.154.193 - - [27/Feb/2026 08:29:26] "[36mGET /assets/plugins/bootstrap/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+69.5.154.193 - - [27/Feb/2026 08:29:26] "[36mGET /assets/scripts/portfolio/portfolio-4-col-grid.js HTTP/1.1[0m" 304 -
+69.5.154.193 - - [27/Feb/2026 08:29:26] "[36mGET /assets/plugins/cubeportfolio/js/jquery.cubeportfolio.min.js HTTP/1.1[0m" 304 -
+69.5.154.193 - - [27/Feb/2026 08:29:26] "[36mGET /assets/scripts/app.js HTTP/1.1[0m" 304 -
+69.5.154.193 - - [27/Feb/2026 08:29:28] "[35m[1mGET /download/1772180962980 HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ubuntu/Team13Project1/backend/venv/lib/python3.12/site-packages/flask/app.py", line 1536, in __call__
+    return self.wsgi_app(environ, start_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/Team13Project1/backend/venv/lib/python3.12/site-packages/flask/app.py", line 1514, in wsgi_app
+    response = self.handle_exception(e)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/Team13Project1/backend/venv/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/Team13Project1/backend/venv/lib/python3.12/site-packages/flask/app.py", line 920, in full_dispatch_request
+    return self.finalize_request(rv)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/Team13Project1/backend/venv/lib/python3.12/site-packages/flask/app.py", line 939, in finalize_request
+    response = self.make_response(rv)
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/Team13Project1/backend/venv/lib/python3.12/site-packages/flask/app.py", line 1204, in make_response
+    raise TypeError(
+TypeError: The view function did not return a valid response tuple. The tuple must have the form (body, status, headers), (body, status), or (body, headers).
+69.5.154.193 - - [27/Feb/2026 08:29:28] "GET /download/1772180962980?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+69.5.154.193 - - [27/Feb/2026 08:29:28] "GET /download/1772180962980?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+96.31.1.4 - - [27/Feb/2026 08:29:28] "[32mGET /add HTTP/1.1[0m" 302 -
+96.31.1.4 - - [27/Feb/2026 08:29:28] "GET /login HTTP/1.1" 200 -
+69.5.154.193 - - [27/Feb/2026 08:29:28] "GET /download/1772180962980?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+96.31.1.4 - - [27/Feb/2026 08:29:28] "GET /assets/plugins/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 -
+96.31.1.4 - - [27/Feb/2026 08:29:28] "GET /assets/css/global.css HTTP/1.1" 200 -
+96.31.1.4 - - [27/Feb/2026 08:29:29] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+185.38.241.4 - - [27/Feb/2026 08:29:46] "[32mGET /upload HTTP/1.1[0m" 302 -
+185.38.241.4 - - [27/Feb/2026 08:29:46] "GET /login HTTP/1.1" 200 -
+185.38.241.4 - - [27/Feb/2026 08:29:46] "GET /assets/plugins/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 -
+185.38.241.4 - - [27/Feb/2026 08:29:46] "GET /assets/css/global.css HTTP/1.1" 200 -
+185.38.241.4 - - [27/Feb/2026 08:29:47] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+199.45.155.91 - - [27/Feb/2026 09:17:45] code 400, message Bad request version ('À\x14À')
+199.45.155.91 - - [27/Feb/2026 09:17:45] "[31m[1m\x16\x03\x01\x00î\x01\x00\x00ê\x03\x03\x04n°WP\x94wË¿\x09!\x12lUD8ÆN_r<\x19\x12·\x04\x1a¹\x89º{·» =xÛß²ºGd\x04\x9f\x13qd§S\x8a\x0dÀ$s`ê©%BÂ¯Ö\x1bwÅp\x00&Ì¨Ì©À/À0À+À,À\x13À\x09À\x14À[0m" 400 -
+199.45.155.91 - - [27/Feb/2026 09:17:49] "GET / HTTP/1.1" 200 -
+199.45.155.91 - - [27/Feb/2026 09:17:52] code 400, message Bad request version ('À\x14À')
+199.45.155.91 - - [27/Feb/2026 09:17:52] "[31m[1m\x16\x03\x01\x00î\x01\x00\x00ê\x03\x03G\x16\x04u]ÜGà\x83×í.°?>J÷NR\x8bü\x14yÐ\x16\x12U\x10æÏtæ "çÉ\x1eÕ.Ó,¼w\x04å2x¦\x05ö\x80jÉøê×EsÒ7ß£\x8d\x8cM\x00&Ì¨Ì©À/À0À+À,À\x13À\x09À\x14À[0m" 400 -
+199.45.155.91 - - [27/Feb/2026 09:17:53] "GET / HTTP/1.1" 200 -
+199.45.155.91 - - [27/Feb/2026 09:17:53] code 505, message Invalid HTTP version (2.0)
+199.45.155.91 - - [27/Feb/2026 09:17:53] "[35m[1mPRI * HTTP/2.0[0m" 505 -
+199.45.155.91 - - [27/Feb/2026 09:17:54] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+199.45.155.91 - - [27/Feb/2026 09:17:59] code 400, message Bad request version ('À\x14À')
+199.45.155.91 - - [27/Feb/2026 09:17:59] "[31m[1m\x16\x03\x01\x00î\x01\x00\x00ê\x03\x03h2\x1dF\x85\x01°¿S¹\x0d\x14m&\x1f¾\x12\x8dÅo~bÍ\x86©|éÃª|o\x93 1\x12\x1d=ië\x96mÜÔ\x8fZîÍÌÜ§Ö«Ö#ènÉ)ådÒ\x17èáu\x00&Ì¨Ì©À/À0À+À,À\x13À\x09À\x14À[0m" 400 -
+199.45.155.91 - - [27/Feb/2026 09:18:00] "GET /login HTTP/1.1" 200 -
+199.45.155.91 - - [27/Feb/2026 09:18:01] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+199.45.155.91 - - [27/Feb/2026 09:18:01] code 400, message Bad request version ('À\x14À')
+199.45.155.91 - - [27/Feb/2026 09:18:01] "[31m[1m\x16\x03\x01\x00î\x01\x00\x00ê\x03\x03i\x82Q\x0e\x0b\x1cd©\x0e-×ÁG îí²tw\x9a\x83\x1d'\x94âa\x9bsU¥F& Is?_Î~òs¹(\x1f¡õå\x05\x1c¯¦Ü\x06¯B¸{ü¡J\x88c\x06Ð4\x00&Ì¨Ì©À/À0À+À,À\x13À\x09À\x14À[0m" 400 -
+199.45.155.91 - - [27/Feb/2026 09:18:02] "[33mGET /g7taedkn5yf HTTP/1.1[0m" 404 -
+40.124.175.201 - - [27/Feb/2026 09:27:42] "[33mGET /v2/ HTTP/1.1[0m" 404 -
+18.218.118.203 - - [27/Feb/2026 13:02:20] "GET / HTTP/1.1" 200 -
+18.218.118.203 - - [27/Feb/2026 13:03:07] "GET / HTTP/1.1" 200 -
+18.218.118.203 - - [27/Feb/2026 13:03:36] code 400, message Bad request version ('À\x14À')
+18.218.118.203 - - [27/Feb/2026 13:03:36] "[31m[1m\x16\x03\x01\x00{\x01\x00\x00w\x03\x03\x12,mÒnµ\x01{w-½\x81\x19\x81m|¾êô÷%\x1dxéQt\x12SSÑk\x1d\x00\x00\x1aÀ/À+À\x11À\x07À\x13À\x09À\x14À[0m" 400 -
+18.218.118.203 - - [27/Feb/2026 13:04:19] code 400, message Bad request syntax ('SSH-2.0-Go')
+18.218.118.203 - - [27/Feb/2026 13:04:19] "[31m[1mSSH-2.0-Go[0m" 400 -
+18.218.118.203 - - [27/Feb/2026 13:07:18] code 400, message Bad request syntax ('\x16\x03\x01\x00{\x01\x00\x00w\x03\x03á\x86F±wö\x1d')
+18.218.118.203 - - [27/Feb/2026 13:07:18] "[31m[1m\x16\x03\x01\x00{\x01\x00\x00w\x03\x03á\x86F±wö\x1d[0m" 400 -
+89.42.231.241 - - [27/Feb/2026 13:55:53] "[33mGET /SDK/webLanguage HTTP/1.1[0m" 404 -
+5.181.190.188 - - [27/Feb/2026 16:51:01] code 400, message Bad request version ('À\x13À')
+5.181.190.188 - - [27/Feb/2026 16:51:01] "[31m[1m\x16\x03\x01\x01\x0c\x01\x00\x01\x08\x03\x03­ÂN!5\x1a3`\x1f¹é\x1aFA\x86H\x0dü vJ\x9c¾c\x8böØ\x9a÷)#\x1b 4J\x94\x88¸]¬\x8e1P çý\x892rü\x87Ó²ç¾>õðõªÌïÃT¦\x00&À+À/À,À0Ì©Ì¨À\x09À\x13À[0m" 400 -
+5.181.190.188 - - [27/Feb/2026 16:51:01] code 400, message Bad request version ('À\x13À')
+5.181.190.188 - - [27/Feb/2026 16:51:01] "[31m[1m\x16\x03\x01\x01\x0c\x01\x00\x01\x08\x03\x03Ý\x1b$õcã~\x16_\x9c+ëûQc\x0dÀO\x04Â\x13o\x863¸AÿoÔo@» \x88-\x8ee\x90Ó.\x1e¯á\x80ä\x0b\x9eG÷;@¬Nëfø¼ép\x8bÙ\\ª\x0d\x1f\x00&À+À/À,À0Ì©Ì¨À\x09À\x13À[0m" 400 -
+5.181.190.188 - - [27/Feb/2026 16:51:01] "[33mGET /..%2F..%2F..%2F..%2F..%2F..%2Fetc%2Fpasswd HTTP/1.1[0m" 404 -
+5.181.190.188 - - [27/Feb/2026 16:51:01] "[33mGET /..\\..\\..\\..\\..\\..\\etc\\passwd HTTP/1.1[0m" 404 -
+205.210.31.195 - - [27/Feb/2026 21:25:47] "GET / HTTP/1.1" 200 -
+69.5.154.193 - - [28/Feb/2026 01:12:39] "GET / HTTP/1.1" 200 -
+69.5.154.193 - - [28/Feb/2026 01:12:39] "GET /assets/css/global.css HTTP/1.1" 200 -
+69.5.154.193 - - [28/Feb/2026 01:12:39] "[36mGET /assets/plugins/bootstrap/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+69.5.154.193 - - [28/Feb/2026 01:12:39] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+69.5.154.193 - - [28/Feb/2026 01:12:56] "[32mPOST /login HTTP/1.1[0m" 302 -
+69.5.154.193 - - [28/Feb/2026 01:12:56] "GET / HTTP/1.1" 200 -
+69.5.154.193 - - [28/Feb/2026 01:12:56] "[36mGET /assets/plugins/bootstrap/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+69.5.154.193 - - [28/Feb/2026 01:12:56] "[36mGET /assets/plugins/font-awesome/css/font-awesome.min.css HTTP/1.1[0m" 304 -
+69.5.154.193 - - [28/Feb/2026 01:12:56] "[36mGET /assets/plugins/themify/themify.css HTTP/1.1[0m" 304 -
+69.5.154.193 - - [28/Feb/2026 01:12:56] "[36mGET /assets/plugins/cubeportfolio/css/cubeportfolio.min.css HTTP/1.1[0m" 304 -
+69.5.154.193 - - [28/Feb/2026 01:12:56] "[36mGET /assets/css/global.css HTTP/1.1[0m" 304 -
+69.5.154.193 - - [28/Feb/2026 01:12:56] "[36mGET /assets/plugins/jquery.min.js HTTP/1.1[0m" 304 -
+69.5.154.193 - - [28/Feb/2026 01:12:56] "[36mGET /assets/plugins/bootstrap/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+69.5.154.193 - - [28/Feb/2026 01:12:56] "[36mGET /assets/plugins/cubeportfolio/js/jquery.cubeportfolio.min.js HTTP/1.1[0m" 304 -
+69.5.154.193 - - [28/Feb/2026 01:12:56] "[36mGET /assets/scripts/portfolio/portfolio-4-col-grid.js HTTP/1.1[0m" 304 -
+69.5.154.193 - - [28/Feb/2026 01:12:56] "[36mGET /assets/scripts/app.js HTTP/1.1[0m" 304 -
+69.5.154.193 - - [28/Feb/2026 01:13:00] "GET /add HTTP/1.1" 200 -
+69.5.154.193 - - [28/Feb/2026 01:13:00] "[36mGET /assets/plugins/bootstrap/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+69.5.154.193 - - [28/Feb/2026 01:13:00] "[36mGET /assets/plugins/jquery.min.js HTTP/1.1[0m" 304 -
+69.5.154.193 - - [28/Feb/2026 01:13:00] "[36mGET /assets/css/global.css HTTP/1.1[0m" 304 -
+69.5.154.193 - - [28/Feb/2026 01:13:00] "[36mGET /assets/plugins/bootstrap/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+69.5.154.193 - - [28/Feb/2026 01:13:00] "[36mGET /assets/scripts/app.js HTTP/1.1[0m" 304 -
+69.5.154.193 - - [28/Feb/2026 01:13:12] "[32mPOST /upload HTTP/1.1[0m" 302 -
+69.5.154.193 - - [28/Feb/2026 01:13:12] "GET / HTTP/1.1" 200 -
+69.5.154.193 - - [28/Feb/2026 01:13:12] "[36mGET /assets/plugins/themify/themify.css HTTP/1.1[0m" 304 -
+69.5.154.193 - - [28/Feb/2026 01:13:12] "[36mGET /assets/plugins/bootstrap/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+69.5.154.193 - - [28/Feb/2026 01:13:12] "[36mGET /assets/plugins/cubeportfolio/css/cubeportfolio.min.css HTTP/1.1[0m" 304 -
+69.5.154.193 - - [28/Feb/2026 01:13:12] "[36mGET /assets/plugins/font-awesome/css/font-awesome.min.css HTTP/1.1[0m" 304 -
+69.5.154.193 - - [28/Feb/2026 01:13:12] "[36mGET /assets/css/global.css HTTP/1.1[0m" 304 -
+69.5.154.193 - - [28/Feb/2026 01:13:12] "[36mGET /assets/plugins/jquery.min.js HTTP/1.1[0m" 304 -
+69.5.154.193 - - [28/Feb/2026 01:13:12] "[36mGET /assets/plugins/bootstrap/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+69.5.154.193 - - [28/Feb/2026 01:13:12] "[36mGET /assets/scripts/app.js HTTP/1.1[0m" 304 -
+69.5.154.193 - - [28/Feb/2026 01:13:12] "[36mGET /assets/plugins/cubeportfolio/js/jquery.cubeportfolio.min.js HTTP/1.1[0m" 304 -
+69.5.154.193 - - [28/Feb/2026 01:13:12] "[36mGET /assets/scripts/portfolio/portfolio-4-col-grid.js HTTP/1.1[0m" 304 -
+69.5.154.193 - - [28/Feb/2026 01:13:14] "[35m[1mGET /download/1772241192584 HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ubuntu/Team13Project1/backend/venv/lib/python3.12/site-packages/flask/app.py", line 1536, in __call__
+    return self.wsgi_app(environ, start_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/Team13Project1/backend/venv/lib/python3.12/site-packages/flask/app.py", line 1514, in wsgi_app
+    response = self.handle_exception(e)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/Team13Project1/backend/venv/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/Team13Project1/backend/venv/lib/python3.12/site-packages/flask/app.py", line 920, in full_dispatch_request
+    return self.finalize_request(rv)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/Team13Project1/backend/venv/lib/python3.12/site-packages/flask/app.py", line 939, in finalize_request
+    response = self.make_response(rv)
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/Team13Project1/backend/venv/lib/python3.12/site-packages/flask/app.py", line 1204, in make_response
+    raise TypeError(
+TypeError: The view function did not return a valid response tuple. The tuple must have the form (body, status, headers), (body, status), or (body, headers).
+69.5.154.193 - - [28/Feb/2026 01:13:14] "GET /download/1772241192584?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+69.5.154.193 - - [28/Feb/2026 01:13:15] "GET /download/1772241192584?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+69.5.154.193 - - [28/Feb/2026 01:13:15] "GET /download/1772241192584?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+198.235.24.9 - - [28/Feb/2026 01:50:56] "GET / HTTP/1.1" 200 -
+66.132.153.139 - - [28/Feb/2026 10:04:35] code 400, message Bad request version ('À\x14À')
+66.132.153.139 - - [28/Feb/2026 10:04:35] "[31m[1m\x16\x03\x01\x00î\x01\x00\x00ê\x03\x03:¬aNÅãÓ\x89\x82\x91Ù'}\x0e\x9e\x16\x116Ò-A\x15W\x13Ø0Î\x13\x83\x94}6 }6B\x86Ö\x1b¶\x15*ÄfpÓ}=»¢\x11.åÇV\x8cÜ3Ù^n\x13r\x0dA\x00&Ì¨Ì©À/À0À+À,À\x13À\x09À\x14À[0m" 400 -
+66.132.153.139 - - [28/Feb/2026 10:04:35] "GET / HTTP/1.1" 200 -
+66.132.153.139 - - [28/Feb/2026 10:04:36] code 505, message Invalid HTTP version (2.0)
+66.132.153.139 - - [28/Feb/2026 10:04:36] "[35m[1mPRI * HTTP/2.0[0m" 505 -
+66.132.153.139 - - [28/Feb/2026 10:04:36] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+66.132.153.139 - - [28/Feb/2026 10:04:39] code 400, message Bad request version ('À\x14À')
+66.132.153.139 - - [28/Feb/2026 10:04:39] "[31m[1m\x16\x03\x01\x00î\x01\x00\x00ê\x03\x03-±®\x8d¦\x18qQ\x1b´H@F»î`ÙuÕ\x02ë¥n\x92I´\x9dsLtï© ¤\x80c\x1cv\x85#ó´Èiè1\x10A¼\x83\x9c\x03\x15\x9fõ}\x93BØ°C9\x84r@\x00&Ì¨Ì©À/À0À+À,À\x13À\x09À\x14À[0m" 400 -
+66.132.153.139 - - [28/Feb/2026 10:04:39] "[33mGET /sitemap.xml HTTP/1.1[0m" 404 -
+16.58.56.214 - - [28/Feb/2026 11:47:56] "GET / HTTP/1.1" 200 -
+16.58.56.214 - - [28/Feb/2026 11:49:47] "GET / HTTP/1.1" 200 -
+16.58.56.214 - - [28/Feb/2026 11:51:05] code 400, message Bad request version ('À\x14À')
+16.58.56.214 - - [28/Feb/2026 11:51:05] "[31m[1m\x16\x03\x01\x00{\x01\x00\x00w\x03\x03v+\x9f÷\x04\x95­F\x94\x07S\x8c¶T\x8dä»Ð\x8d\x83\x0d§|5\x98cÓ\x89s\x15B¾\x00\x00\x1aÀ/À+À\x11À\x07À\x13À\x09À\x14À[0m" 400 -
+16.58.56.214 - - [28/Feb/2026 11:52:35] code 400, message Bad request syntax ('SSH-2.0-Go')
+16.58.56.214 - - [28/Feb/2026 11:52:35] "[31m[1mSSH-2.0-Go[0m" 400 -
+16.58.56.214 - - [28/Feb/2026 11:53:39] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x00{\x01\x00\x00w\x03\x03Ï¥¡M¾4\x93\x02\x17QA¶¶N-I\x05¨®;\x00\x12xÝN\x04\x98\x8em\x80\x8fÒ\x00\x00\x1aÀ/À+À\x11À\x07À\x13À')
+16.58.56.214 - - [28/Feb/2026 11:53:39] "[31m[1m\x16\x03\x01\x00{\x01\x00\x00w\x03\x03Ï¥¡M¾4\x93\x02\x17QA¶¶N-I\x05¨®;\x00\x12xÝN\x04\x98\x8em\x80\x8fÒ\x00\x00\x1aÀ/À+À\x11À\x07À\x13À\x09À\x14À[0m" 400 -
+5.181.190.188 - - [28/Feb/2026 14:54:02] code 400, message Bad request version ('À\x13À')
+5.181.190.188 - - [28/Feb/2026 14:54:02] "[31m[1m\x16\x03\x01\x01\x0c\x01\x00\x01\x08\x03\x03³\x93Æ"ðn0^\x06sÊpw\x94\x15'åÆ³\x90cÇnK]«A°ivø\x1c XV\x96êy¦kå\x85\x8bh\x96\x97c\x02;:\x13;Ïq\x1b,\x1böpç¢>\x91\x05\x84\x00&À+À/À,À0Ì©Ì¨À\x09À\x13À[0m" 400 -
+5.181.190.188 - - [28/Feb/2026 14:54:02] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x01')
+5.181.190.188 - - [28/Feb/2026 14:54:02] "[31m[1m\x16\x03\x01\x01\x0c\x01\x00\x01\x08\x03\x03$\x8cÛb\x98Ï\x17\x96ñï#|tá[à\x81[0m" 400 -
+5.181.190.188 - - [28/Feb/2026 14:54:02] "[33mGET /..%2F..%2F..%2F..%2F..%2F..%2Fetc%2Fpasswd HTTP/1.1[0m" 404 -
+5.181.190.188 - - [28/Feb/2026 14:54:02] "[33mGET /..\\..\\..\\..\\..\\..\\etc\\passwd HTTP/1.1[0m" 404 -
+69.5.131.16 - - [28/Feb/2026 17:40:03] "GET / HTTP/1.1" 200 -
+69.5.131.16 - - [28/Feb/2026 17:40:03] "[36mGET /assets/plugins/bootstrap/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+69.5.131.16 - - [28/Feb/2026 17:40:03] "[36mGET /assets/plugins/cubeportfolio/css/cubeportfolio.min.css HTTP/1.1[0m" 304 -
+69.5.131.16 - - [28/Feb/2026 17:40:03] "[36mGET /assets/plugins/font-awesome/css/font-awesome.min.css HTTP/1.1[0m" 304 -
+69.5.131.16 - - [28/Feb/2026 17:40:03] "[36mGET /assets/plugins/themify/themify.css HTTP/1.1[0m" 304 -
+69.5.131.16 - - [28/Feb/2026 17:40:03] "[36mGET /assets/plugins/jquery.min.js HTTP/1.1[0m" 304 -
+69.5.131.16 - - [28/Feb/2026 17:40:03] "[36mGET /assets/css/global.css HTTP/1.1[0m" 304 -
+69.5.131.16 - - [28/Feb/2026 17:40:03] "[36mGET /assets/plugins/bootstrap/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+69.5.131.16 - - [28/Feb/2026 17:40:04] "[36mGET /assets/scripts/app.js HTTP/1.1[0m" 304 -
+69.5.131.16 - - [28/Feb/2026 17:40:04] "[36mGET /assets/plugins/cubeportfolio/js/jquery.cubeportfolio.min.js HTTP/1.1[0m" 304 -
+69.5.131.16 - - [28/Feb/2026 17:40:04] "[36mGET /assets/scripts/portfolio/portfolio-4-col-grid.js HTTP/1.1[0m" 304 -
+69.5.131.16 - - [28/Feb/2026 17:40:20] "[35m[1mGET /download/1772241192584 HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ubuntu/Team13Project1/backend/venv/lib/python3.12/site-packages/flask/app.py", line 1536, in __call__
+    return self.wsgi_app(environ, start_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/Team13Project1/backend/venv/lib/python3.12/site-packages/flask/app.py", line 1514, in wsgi_app
+    response = self.handle_exception(e)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/Team13Project1/backend/venv/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/Team13Project1/backend/venv/lib/python3.12/site-packages/flask/app.py", line 920, in full_dispatch_request
+    return self.finalize_request(rv)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/Team13Project1/backend/venv/lib/python3.12/site-packages/flask/app.py", line 939, in finalize_request
+    response = self.make_response(rv)
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/Team13Project1/backend/venv/lib/python3.12/site-packages/flask/app.py", line 1204, in make_response
+    raise TypeError(
+TypeError: The view function did not return a valid response tuple. The tuple must have the form (body, status, headers), (body, status), or (body, headers).
+69.5.131.16 - - [28/Feb/2026 17:40:20] "[36mGET /download/1772241192584?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+69.5.131.16 - - [28/Feb/2026 17:40:20] "[36mGET /download/1772241192584?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+69.5.131.16 - - [28/Feb/2026 17:40:59] "GET /assets/plugins/font-awesome/fonts/fontawesome-webfont.woff2?v=4.5.0 HTTP/1.1" 200 -
+69.5.131.16 - - [28/Feb/2026 17:40:59] "GET / HTTP/1.1" 200 -
+69.5.131.16 - - [28/Feb/2026 17:41:02] "[35m[1mGET /download/1772241192584 HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ubuntu/Team13Project1/backend/venv/lib/python3.12/site-packages/flask/app.py", line 1536, in __call__
+    return self.wsgi_app(environ, start_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/Team13Project1/backend/venv/lib/python3.12/site-packages/flask/app.py", line 1514, in wsgi_app
+    response = self.handle_exception(e)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/Team13Project1/backend/venv/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/Team13Project1/backend/venv/lib/python3.12/site-packages/flask/app.py", line 920, in full_dispatch_request
+    return self.finalize_request(rv)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/Team13Project1/backend/venv/lib/python3.12/site-packages/flask/app.py", line 939, in finalize_request
+    response = self.make_response(rv)
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/Team13Project1/backend/venv/lib/python3.12/site-packages/flask/app.py", line 1204, in make_response
+    raise TypeError(
+TypeError: The view function did not return a valid response tuple. The tuple must have the form (body, status, headers), (body, status), or (body, headers).
+69.5.131.16 - - [28/Feb/2026 17:41:02] "[36mGET /download/1772241192584?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+69.5.131.16 - - [28/Feb/2026 17:41:02] "[36mGET /download/1772241192584?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+69.5.131.16 - - [28/Feb/2026 17:42:08] "GET / HTTP/1.1" 200 -
+69.5.131.16 - - [28/Feb/2026 17:42:08] "[36mGET /assets/plugins/themify/themify.css HTTP/1.1[0m" 304 -
+69.5.131.16 - - [28/Feb/2026 17:42:08] "[36mGET /assets/plugins/cubeportfolio/css/cubeportfolio.min.css HTTP/1.1[0m" 304 -
+69.5.131.16 - - [28/Feb/2026 17:42:08] "[36mGET /assets/plugins/bootstrap/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+69.5.131.16 - - [28/Feb/2026 17:42:08] "[36mGET /assets/plugins/font-awesome/css/font-awesome.min.css HTTP/1.1[0m" 304 -
+69.5.131.16 - - [28/Feb/2026 17:42:08] "[36mGET /assets/css/global.css HTTP/1.1[0m" 304 -
+69.5.131.16 - - [28/Feb/2026 17:42:08] "[36mGET /assets/plugins/jquery.min.js HTTP/1.1[0m" 304 -
+69.5.131.16 - - [28/Feb/2026 17:42:08] "[36mGET /assets/plugins/bootstrap/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+69.5.131.16 - - [28/Feb/2026 17:42:08] "[36mGET /assets/plugins/cubeportfolio/js/jquery.cubeportfolio.min.js HTTP/1.1[0m" 304 -
+69.5.131.16 - - [28/Feb/2026 17:42:08] "[36mGET /assets/scripts/portfolio/portfolio-4-col-grid.js HTTP/1.1[0m" 304 -
+69.5.131.16 - - [28/Feb/2026 17:42:08] "[36mGET /assets/scripts/app.js HTTP/1.1[0m" 304 -
+69.5.131.16 - - [28/Feb/2026 17:43:15] "GET / HTTP/1.1" 200 -
+69.5.131.16 - - [28/Feb/2026 17:43:23] "GET / HTTP/1.1" 200 -
+69.5.131.16 - - [28/Feb/2026 17:43:45] "[35m[1mGET /download/1772241192584 HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ubuntu/Team13Project1/backend/venv/lib/python3.12/site-packages/flask/app.py", line 1536, in __call__
+    return self.wsgi_app(environ, start_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/Team13Project1/backend/venv/lib/python3.12/site-packages/flask/app.py", line 1514, in wsgi_app
+    response = self.handle_exception(e)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/Team13Project1/backend/venv/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/Team13Project1/backend/venv/lib/python3.12/site-packages/flask/app.py", line 920, in full_dispatch_request
+    return self.finalize_request(rv)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/Team13Project1/backend/venv/lib/python3.12/site-packages/flask/app.py", line 939, in finalize_request
+    response = self.make_response(rv)
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/Team13Project1/backend/venv/lib/python3.12/site-packages/flask/app.py", line 1204, in make_response
+    raise TypeError(
+TypeError: The view function did not return a valid response tuple. The tuple must have the form (body, status, headers), (body, status), or (body, headers).
+69.5.131.16 - - [28/Feb/2026 17:43:45] "[36mGET /download/1772241192584?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+69.5.131.16 - - [28/Feb/2026 17:43:45] "[36mGET /download/1772241192584?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+69.5.131.16 - - [28/Feb/2026 17:47:05] "GET / HTTP/1.1" 200 -
+69.5.131.16 - - [28/Feb/2026 17:47:05] "[36mGET /assets/plugins/bootstrap/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+69.5.131.16 - - [28/Feb/2026 17:47:05] "[36mGET /assets/plugins/font-awesome/css/font-awesome.min.css HTTP/1.1[0m" 304 -
+69.5.131.16 - - [28/Feb/2026 17:47:05] "[36mGET /assets/plugins/cubeportfolio/css/cubeportfolio.min.css HTTP/1.1[0m" 304 -
+69.5.131.16 - - [28/Feb/2026 17:47:05] "[36mGET /assets/plugins/themify/themify.css HTTP/1.1[0m" 304 -
+69.5.131.16 - - [28/Feb/2026 17:47:05] "[36mGET /assets/css/global.css HTTP/1.1[0m" 304 -
+69.5.131.16 - - [28/Feb/2026 17:47:05] "[36mGET /assets/plugins/jquery.min.js HTTP/1.1[0m" 304 -
+69.5.131.16 - - [28/Feb/2026 17:47:05] "[36mGET /assets/plugins/bootstrap/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+69.5.131.16 - - [28/Feb/2026 17:47:05] "[36mGET /assets/plugins/cubeportfolio/js/jquery.cubeportfolio.min.js HTTP/1.1[0m" 304 -
+69.5.131.16 - - [28/Feb/2026 17:47:05] "[36mGET /assets/scripts/portfolio/portfolio-4-col-grid.js HTTP/1.1[0m" 304 -
+69.5.131.16 - - [28/Feb/2026 17:47:05] "[36mGET /assets/scripts/app.js HTTP/1.1[0m" 304 -
+69.5.131.16 - - [28/Feb/2026 17:47:07] "[36mGET /assets/plugins/font-awesome/fonts/fontawesome-webfont.woff2?v=4.5.0 HTTP/1.1[0m" 304 -
+69.5.131.16 - - [28/Feb/2026 17:47:07] "GET / HTTP/1.1" 200 -
+69.5.131.16 - - [28/Feb/2026 17:47:10] "[35m[1mGET /download/1772241192584 HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ubuntu/Team13Project1/backend/venv/lib/python3.12/site-packages/flask/app.py", line 1536, in __call__
+    return self.wsgi_app(environ, start_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/Team13Project1/backend/venv/lib/python3.12/site-packages/flask/app.py", line 1514, in wsgi_app
+    response = self.handle_exception(e)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/Team13Project1/backend/venv/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/Team13Project1/backend/venv/lib/python3.12/site-packages/flask/app.py", line 920, in full_dispatch_request
+    return self.finalize_request(rv)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/Team13Project1/backend/venv/lib/python3.12/site-packages/flask/app.py", line 939, in finalize_request
+    response = self.make_response(rv)
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/Team13Project1/backend/venv/lib/python3.12/site-packages/flask/app.py", line 1204, in make_response
+    raise TypeError(
+TypeError: The view function did not return a valid response tuple. The tuple must have the form (body, status, headers), (body, status), or (body, headers).
+69.5.131.16 - - [28/Feb/2026 17:47:10] "[36mGET /download/1772241192584?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+69.5.131.16 - - [28/Feb/2026 17:47:10] "[36mGET /download/1772241192584?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+69.5.131.16 - - [28/Feb/2026 17:52:28] "GET / HTTP/1.1" 200 -
+69.5.131.16 - - [28/Feb/2026 17:52:28] "[36mGET /assets/plugins/font-awesome/css/font-awesome.min.css HTTP/1.1[0m" 304 -
+69.5.131.16 - - [28/Feb/2026 17:52:28] "[36mGET /assets/plugins/themify/themify.css HTTP/1.1[0m" 304 -
+69.5.131.16 - - [28/Feb/2026 17:52:28] "[36mGET /assets/plugins/cubeportfolio/css/cubeportfolio.min.css HTTP/1.1[0m" 304 -
+69.5.131.16 - - [28/Feb/2026 17:52:28] "[36mGET /assets/plugins/bootstrap/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+69.5.131.16 - - [28/Feb/2026 17:52:28] "[36mGET /assets/css/global.css HTTP/1.1[0m" 304 -
+69.5.131.16 - - [28/Feb/2026 17:52:28] "[36mGET /assets/plugins/jquery.min.js HTTP/1.1[0m" 304 -
+69.5.131.16 - - [28/Feb/2026 17:52:28] "[36mGET /assets/plugins/bootstrap/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+69.5.131.16 - - [28/Feb/2026 17:52:29] "[36mGET /assets/plugins/cubeportfolio/js/jquery.cubeportfolio.min.js HTTP/1.1[0m" 304 -
+69.5.131.16 - - [28/Feb/2026 17:52:29] "[36mGET /assets/scripts/portfolio/portfolio-4-col-grid.js HTTP/1.1[0m" 304 -
+69.5.131.16 - - [28/Feb/2026 17:52:29] "[36mGET /assets/scripts/app.js HTTP/1.1[0m" 304 -
+69.5.131.16 - - [28/Feb/2026 17:52:32] "[35m[1mGET /download/1772241192584 HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ubuntu/Team13Project1/backend/venv/lib/python3.12/site-packages/flask/app.py", line 1536, in __call__
+    return self.wsgi_app(environ, start_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/Team13Project1/backend/venv/lib/python3.12/site-packages/flask/app.py", line 1514, in wsgi_app
+    response = self.handle_exception(e)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/Team13Project1/backend/venv/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/Team13Project1/backend/venv/lib/python3.12/site-packages/flask/app.py", line 920, in full_dispatch_request
+    return self.finalize_request(rv)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/Team13Project1/backend/venv/lib/python3.12/site-packages/flask/app.py", line 939, in finalize_request
+    response = self.make_response(rv)
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/Team13Project1/backend/venv/lib/python3.12/site-packages/flask/app.py", line 1204, in make_response
+    raise TypeError(
+TypeError: The view function did not return a valid response tuple. The tuple must have the form (body, status, headers), (body, status), or (body, headers).
+69.5.131.16 - - [28/Feb/2026 17:52:32] "[36mGET /download/1772241192584?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+69.5.131.16 - - [28/Feb/2026 17:52:32] "[36mGET /download/1772241192584?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
