@@ -248,6 +248,7 @@ def gallery():
 
     bucket = os.environ.get("S3_BUCKET", "assignment-1-images")
     photos = db.list_photos(session["user_id"])
+    print(photos)
     return render_template("index.html", photos=photos, S3_BUCKET=bucket)
 
     # user_id = session["user_id"]
@@ -322,32 +323,30 @@ def search():
 @login_required
 def download(photo_id):
     """Stream the photo from S3 so the user can download it."""
-
     user_id = session["user_id"]
     photo = db.get_photo(photo_id, user_id)
-    if not photo: return "Not found.", 404
     
-    s3 = boto3.client("s3", region_name=os.environ.get("AWS_REGION", "us-east-2"))
-    obj = s3.get_object(Bucket=photo["s3_bucket"], Key=photo["s3_key"])
-    return Response(obj["Body"].read(), content_type=photo.get("content_type")),
-    headers={"Content-Disposition": f"attachment; filename={photo['original_name']}"}
-    # user_id = session["user_id"]
-    # photo = db.get_photo(photo_id, user_id)
-    # if not photo:
-    #     return "Photo not found.", 404
-    # bucket = photo["s3_bucket"]
-    # key = photo["s3_key"]
-    # content_type = photo.get("content_type") or "application/octet-stream"
-    # filename = photo.get("original_name") or "photo"
-    # try:
-    #     s3 = boto3.client("s3", region_name=os.environ.get("AWS_REGION", "us-east-2"))
-    #     obj = s3.get_object(Bucket=bucket, Key=key)
-    #     body = obj["Body"].read()
-    # except Exception as e:
-    #     return f"Download failed: {e}", 500
-    # resp = Response(body, content_type=content_type)
-    # resp.headers["Content-Disposition"] = f'attachment; filename="{filename}"'
-    # return resp
+    # Path 1: Photo not found in DB
+    if not photo:
+        return "Not found.", 404
+        
+    try:
+        s3 = boto3.client("s3", region_name=os.environ.get("AWS_REGION", "us-east-2"))
+        obj = s3.get_object(Bucket=photo["s3_bucket"], Key=photo["s3_key"])
+        body = obj["Body"].read()
+        
+        content_type = photo.get("content_type") or "application/octet-stream"
+        filename = photo.get("original_name") or "photo"
+        
+        resp = Response(body, content_type=content_type)
+        resp.headers["Content-Disposition"] = f'attachment; filename="{filename}"'
+        
+        # Path 2: Download succeeds
+        return resp
+        
+    except Exception as e:
+        # Path 3: AWS/S3 crashes
+        return f"Download failed: {str(e)}", 500
 
 
 # ---------------------------------------------------------------------------
